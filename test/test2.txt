@@ -1,0 +1,21 @@
+/*  编译原理实践作业测试样例
+    [ 测试基本语法 ]   */
+
+var i;
+var j;
+var sum;
+func test(){
+  var a;
+  a = 1;
+  read(j);
+  if a < j {
+      a = a + 1;
+    };
+  print(a);
+}
+call test();
+sum = 0;
+for i in 1...10 {
+    sum = sum + 1;
+  };
+print(sum);

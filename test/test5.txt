@@ -1,0 +1,31 @@
+/* 编译原理实践作业测试样例
+   [ 测试补充点 : (6)]
+*/
+var a[5];
+float b[3];
+bool c[2];
+var t;
+float u;
+bool v;
+a[2] = 3;
+a[1] = 2;
+a[0] = 1;
+a[3] = 4;
+a[4] = 5;
+t = 0;
+a[4] = a[4] - a[2];// 5-3=2
+t = a[4]/2;	   // 2/2=1
+print(t);
+b[0] = 1.2;
+b[1] = b[0] +2;
+b[2] = b[0] * b[1];// 1.2*3.2=3.84;
+u = b[2];
+print(u);
+c[0] = true;
+c[1] = false;
+v = c[0] and c[1];
+print(v);
+v = c[0] or c[1];
+print(v);
+v = not v;
+print(v);

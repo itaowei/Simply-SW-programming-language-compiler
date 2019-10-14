@@ -1,0 +1,61 @@
+/* 编译原理实践作业测试样例
+   [测试基本语法: 4种数据类型的定义, if语句, print语句, 赋值语句, for循环语句]
+   [ 测试补充点 : (1)(2)(4)ab(5)]
+   (此处为段注释) (1)(b)
+*/
+// 测试样例1（此处为行注释）(1)(a)
+const a = 2;// 支持常量const的定义(5)(a)
+var b;      // 支持整数类型var的定义
+var i;
+var j;
+float f1;   // 支持实数float类型(4)(b)
+bool flag;  // 支持bool类型(4)(a)
+bool test;
+var t;
+b = 100;    // 赋值语句
+b++;        // 支持自增(2)(c)
+if odd b    // if语句 & 支持ODD (2)(b)
+{
+    print(b);// print语句
+};
+b--;        // 支持自减(2)(c)
+if odd b    // 支持ODD (2)(b)
+{
+    print(b);
+};
+for i in a...b       // for循环 & 支持常量的使用(5)(a)
+{
+    flag = false;    // 支持求余运算符(2)(a)
+    for j in a...i-1
+    {
+        t = i%j;
+        if t==0
+        {
+            flag = true;
+        };
+    };
+    if flag == false 
+    {
+        print(i);
+    };
+};
+print(flag);
+test = true;
+print(test);
+test = not test;     // bool 类型not运算(4)(a)
+print(test);
+test = test and flag;// bool 类型and运算(4)(a)
+print(test);
+test = test or flag; // bool 类型or运算(4)(a)
+print(test);
+
+f1 = 2.33;
+f1 = (f1+1)/1.01-3.1*4.2;// 支持实数加减乘除(4)(b)
+print(f1);
+toint(f1);           // 支持实数类型转换为整数类型(4)(b)
+print(f1);
+f1++;
+print(f1);
+print(j);
+tofloat(j);          // 支持整数类型转换为实数类型(4)(b)
+print(j);

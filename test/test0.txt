@@ -1,0 +1,23 @@
+/*  编译原理实践作业测试样例
+    [ 输出1-100之间的素数 ]   */
+
+var i;
+var j;
+bool flag;
+var t;
+for i in 2...100
+{
+    flag = false;
+    for j in 2...i-1
+    {
+        t = i%j;
+        if t==0
+        {
+            flag = true;
+        };
+    };
+    if flag == false 
+    {
+        print(i);
+    };
+};

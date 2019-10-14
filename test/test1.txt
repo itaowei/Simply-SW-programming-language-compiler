@@ -1,0 +1,24 @@
+/*       编译原理实践作业测试样例
+    [ 求(用户输入的)俩整数的最小公倍数 ]   */
+
+var m;
+var n;
+var a;
+var b;
+read(m);
+read(n);
+a = m;
+b = n;
+while a!=b
+{
+    if a>b
+    {
+	a = a - b;
+    }
+     else
+    {
+	b = b-a;
+    };
+};
+b = m*n/a;
+print(b);

@@ -1,0 +1,94 @@
+/* 编译原理实践作业测试样例
+   [测试基本语法: read语句, call语句, while循环语句]
+   [ 测试补充点 : (3)(7)]
+*/
+// 测试样例2
+var x;
+var y;
+var z;
+var a;
+var b;
+var sum;
+bool flag;
+func gcd(var f, var g)    // 支持带参数的函数过程(7)
+{
+  while f!=g              // while循环语句
+  {
+        if f<g { g=g-f;}
+        else { f=f-g;};
+  };
+  z=f;
+}
+func outminus1(var h)
+{
+  print(h);
+  return h-1;             // 支持带返回值的函数过程(7)
+}
+read(x);                  // read语句
+read(y); 
+call gcd(x,y);            // call语句
+z = x*y/z;
+z = call outminus1(z);
+print(z);
+
+read(a);
+read(b);
+flag = true;
+switch(a*b)               // switch/case语句(3)(a)
+{
+    case 1:
+	print(a);
+	break;
+    case 2:
+	print(b);
+	break;
+    default:
+	print(flag);
+	break;
+};
+
+
+flag = not flag;
+print(flag);
+
+
+a = 1;
+read(b);
+if b > 50
+{ exit;};	          // exit语句(3)(b)
+sum = 0;
+repeat                    // repeat语句(3)(c)
+{
+    sum = sum + a;
+    a++;
+    if a>10
+    {
+        break;            // break语句(3)(b)
+     };
+}while a <= b;
+print(sum);
+
+
+print(flag);
+
+
+for a in 1...60
+{
+      if a < 50
+     { continue; };       //continue语句(3)(b)
+      print(a);
+};
+
+print(flag);
+print(flag);
+print(flag);
+
+while a<70
+{
+      print(a);
+      a++;
+      if a<=65
+      { print(flag); }    //continue语句(3)(b)
+      else
+      { continue; };
+};
