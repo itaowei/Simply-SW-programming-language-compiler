@@ -9,11 +9,15 @@
 
 （语法定义中加粗部分为扩展部分）
 program = declaration_list statement_list.
-<div align=center>![program语法图](graph/program.GIF)
+<div align=center>
+ ![program语法图](graph/program.GIF)
+</div>
 图1 program语法图
 
 declaration_list = var_declaration_list function_declaration_list.
-<div align=center>![program语法图](graph/declaration_list.GIF)
+<div align=center>
+ ![program语法图](graph/declaration_list.GIF)
+</div>
 图2 declaration_list语法图
 
 var_declaration_list = { var_declaration ";" }.
