@@ -3,44 +3,43 @@
  *
  * The program has been tested on CodeBlocks  16.01 rev 10702
  *
- * Student: Tao Wei ÌÕçâ
- * Student Number: 10142130225
+ * Student: Tao Wei é™¶ç®
  *
- * Ê¹ÓÃ·½·¨£º
- * ÔËĞĞºóÊäÈëSWÔ´³ÌĞòÎÄ¼şÃû
- * »Ø´ğÊÇ·ñÊä³öĞéÄâ»ú´úÂë
- * »Ø´ğÊÇ·ñÊä³ö·ûºÅ±í
- * fcode.txtÊä³öĞéÄâ»ú´úÂë
- * foutput.txtÊä³öÔ´ÎÄ¼ş¡¢³ö´íÊ¾Òâ£¨ÈçÓĞ´í£©¡¢¸÷ĞĞ¶ÔÓ¦µÄÉú³É´úÂëÊ×µØÖ·£¨ÈçÎŞ´í£©
- * fresult.txtÊä³öÔËĞĞ½á¹û
- * ftable.txtÊä³ö·ûºÅ±í
+ * ä½¿ç”¨æ–¹æ³•ï¼š
+ * è¿è¡Œåè¾“å…¥SWæºç¨‹åºæ–‡ä»¶å
+ * å›ç­”æ˜¯å¦è¾“å‡ºè™šæ‹Ÿæœºä»£ç 
+ * å›ç­”æ˜¯å¦è¾“å‡ºç¬¦å·è¡¨
+ * fcode.txtè¾“å‡ºè™šæ‹Ÿæœºä»£ç 
+ * foutput.txtè¾“å‡ºæºæ–‡ä»¶ã€å‡ºé”™ç¤ºæ„ï¼ˆå¦‚æœ‰é”™ï¼‰ã€å„è¡Œå¯¹åº”çš„ç”Ÿæˆä»£ç é¦–åœ°å€ï¼ˆå¦‚æ— é”™ï¼‰
+ * fresult.txtè¾“å‡ºè¿è¡Œç»“æœ
+ * ftable.txtè¾“å‡ºç¬¦å·è¡¨
  */
 
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
 
-#define bool int            /* ÒòÎªCÓïÑÔÃ»ÓĞboolÀàĞÍ */
-#define true 1              /* ËùÒÔ×öÕâ3ĞĞ´¦Àí */
+#define bool int            /* å› ä¸ºCè¯­è¨€æ²¡æœ‰boolç±»å‹ */
+#define true 1              /* æ‰€ä»¥åšè¿™3è¡Œå¤„ç† */
 #define false 0
 
-#define norw 29             /* ±£Áô×Ö¸öÊı 10+19 */
-#define txmax 100           /* ·ûºÅ±íÈİÁ¿ */
-#define nmax 14             /* Êı×ÖµÄ×î´óÎ»Êı */
-#define al 10               /* ±êÊ¶·ûµÄ×î´ó³¤¶È 10?*/
+#define norw 29             /* ä¿ç•™å­—ä¸ªæ•° 10+19 */
+#define txmax 100           /* ç¬¦å·è¡¨å®¹é‡ */
+#define nmax 14             /* æ•°å­—çš„æœ€å¤§ä½æ•° */
+#define al 10               /* æ ‡è¯†ç¬¦çš„æœ€å¤§é•¿åº¦ 10?*/
 
-#define maxerr 30           /* ÔÊĞíµÄ×î¶à´íÎóÊı */
-#define amax 2048           /* µØÖ·ÉÏ½ç*/
-#define cxmax 200           /* ×î¶àµÄĞéÄâ»ú´úÂëÊı */
-#define stacksize 500       /* ÔËĞĞÊ±Êı¾İÕ»ÔªËØ×î¶àÎª500¸ö */
-#define levmax 1            /* ×î´óÔÊĞí¹ı³ÌÇ¶Ì×ÉùÃ÷²ãÊı*/
+#define maxerr 30           /* å…è®¸çš„æœ€å¤šé”™è¯¯æ•° */
+#define amax 2048           /* åœ°å€ä¸Šç•Œ*/
+#define cxmax 200           /* æœ€å¤šçš„è™šæ‹Ÿæœºä»£ç æ•° */
+#define stacksize 500       /* è¿è¡Œæ—¶æ•°æ®æ ˆå…ƒç´ æœ€å¤šä¸º500ä¸ª */
+#define levmax 1            /* æœ€å¤§å…è®¸è¿‡ç¨‹åµŒå¥—å£°æ˜å±‚æ•°*/
 
 
-/* ·ûºÅ */
+/* ç¬¦å· */
 enum symbol {
-    nul,                    /* Î´¶¨Òå */
-    ident,                  /* ±êÊ¶·û */
-    number,                 /*  Êı×Ö  */
+    nul,                    /* æœªå®šä¹‰ */
+    ident,                  /* æ ‡è¯†ç¬¦ */
+    number,                 /*  æ•°å­—  */
     plus,   minus,          /*  +  -  */
     times,  slash,          /*  *  /  */
     eql,                    /*   ==   */
@@ -67,36 +66,36 @@ enum symbol {
 #define symnum 57           // 27+29+1
 
 
-/* ·ûºÅ±íÖĞµÄÀàĞÍ */
+/* ç¬¦å·è¡¨ä¸­çš„ç±»å‹ */
 enum object {
-    variable,               /*  ±äÁ¿  */
-    function,               /*  º¯Êı  */
-    boolean,                /*  ²¼¶û  */
-    constant,               /*  ³£Êı  */
-    floatnum,               /*  ÊµÊı  */
+    variable,               /*  å˜é‡  */
+    function,               /*  å‡½æ•°  */
+    boolean,                /*  å¸ƒå°”  */
+    constant,               /*  å¸¸æ•°  */
+    floatnum,               /*  å®æ•°  */
 };
 
 
-/* ĞéÄâ»ú´úÂëÖ¸Áî */
+/* è™šæ‹Ÿæœºä»£ç æŒ‡ä»¤ */
 enum fct {
-    lit,                    /* lit 0, a ½«ÊıaÖÃÈëÕ»¶¥ */
-    opr,                    /* opr 0, a Ò»×éËãÊõ¹ØÏµÔËËã·û ·µ»Øµ÷ÓÃ³ÌĞò */
-    lod,                    /* lod 1, a ½«1,aĞÎ³ÉµÄÕ»µØÖ·±äÁ¿ÖµÖÃÈëÕ»¶¥ */
-    sto,                    /* sto 1, a ½«Õ»¶¥Öµ´æµ½ÓÉ1,aĞÎ³ÉµÄÕ»µØÖ·±äÁ¿ */
-    cal,                    /* cal 1, a µ÷ÓÃ×Ó³ÌĞò */
-    ini,                    /* int 0, a Ô¤Áôa¸ö´æ´¢Î»ÖÃ (intĞ´×÷ini±ÜÃâÓëCÓïÑÔÖĞµÄINT»ìÏı) */
-    jmp,                    /* jmp 0, a ÎŞÌõ¼ş×ªÒÆ */
-    jpc,                    /* jpc 0, a Ìõ¼ş×ªÒÆ (µ±s(t)==0Ê±) */
+    lit,                    /* lit 0, a å°†æ•°aç½®å…¥æ ˆé¡¶ */
+    opr,                    /* opr 0, a ä¸€ç»„ç®—æœ¯å…³ç³»è¿ç®—ç¬¦ è¿”å›è°ƒç”¨ç¨‹åº */
+    lod,                    /* lod 1, a å°†1,aå½¢æˆçš„æ ˆåœ°å€å˜é‡å€¼ç½®å…¥æ ˆé¡¶ */
+    sto,                    /* sto 1, a å°†æ ˆé¡¶å€¼å­˜åˆ°ç”±1,aå½¢æˆçš„æ ˆåœ°å€å˜é‡ */
+    cal,                    /* cal 1, a è°ƒç”¨å­ç¨‹åº */
+    ini,                    /* int 0, a é¢„ç•™aä¸ªå­˜å‚¨ä½ç½® (intå†™ä½œinié¿å…ä¸Cè¯­è¨€ä¸­çš„INTæ··æ·†) */
+    jmp,                    /* jmp 0, a æ— æ¡ä»¶è½¬ç§» */
+    jpc,                    /* jpc 0, a æ¡ä»¶è½¬ç§» (å½“s(t)==0æ—¶) */
 };
 #define fctnum 8
 
 
-/* ĞéÄâ»ú´úÂë½á¹¹ */
+/* è™šæ‹Ÿæœºä»£ç ç»“æ„ */
 struct instruction
 {
-    enum fct f;             /* ĞéÄâ»ú´úÂëÖ¸Áî */
-    int l;                  /* ÒıÓÃ²ãÓëÉùÃ÷²ãµÄ²ã´Î²î */
-    float a;                /* ¸ù¾İfµÄ²»Í¬¶ø²»Í¬ */
+    enum fct f;             /* è™šæ‹Ÿæœºä»£ç æŒ‡ä»¤ */
+    int l;                  /* å¼•ç”¨å±‚ä¸å£°æ˜å±‚çš„å±‚æ¬¡å·® */
+    float a;                /* æ ¹æ®fçš„ä¸åŒè€Œä¸åŒ */
 };
 
 struct parameter
@@ -105,72 +104,72 @@ struct parameter
     enum object type;
 };
 
-struct parameter p[10];     /* º¯ÊıÄÚ¿É´«µİ×î¶à10¸ö²ÎÊı */
+struct parameter p[10];     /* å‡½æ•°å†…å¯ä¼ é€’æœ€å¤š10ä¸ªå‚æ•° */
 
-/* È«¾Ö±äÁ¿ (ÖĞ¼ä¹ı³ÌÊ¹ÓÃ) */
-bool listswitch ;           /* ÏÔÊ¾ĞéÄâ»ú´úÂëÓë·ñ */
-bool tableswitch ;          /* ÏÔÊ¾·ûºÅ±íÓë·ñ */
-struct instruction code[cxmax]; /* ´æ·ÅĞéÄâ»ú´úÂëµÄÊı×é */
-char mnemonic[fctnum][5];   /* ĞéÄâ»ú´úÂëÖ¸ÁîÃû³Æ */
-bool declbegsys[symnum];    /* ±íÊ¾ÉùÃ÷¿ªÊ¼µÄ·ûºÅ¼¯ºÏ */
-bool statbegsys[symnum];    /* ±íÊ¾Óï¾ä¿ªÊ¼µÄ·ûºÅ¼¯ºÏ */
-bool facbegsys[symnum];     /* ±íÊ¾Òò×Ó¿ªÊ¼µÄ·ûºÅ¼¯ºÏ */
+/* å…¨å±€å˜é‡ (ä¸­é—´è¿‡ç¨‹ä½¿ç”¨) */
+bool listswitch ;           /* æ˜¾ç¤ºè™šæ‹Ÿæœºä»£ç ä¸å¦ */
+bool tableswitch ;          /* æ˜¾ç¤ºç¬¦å·è¡¨ä¸å¦ */
+struct instruction code[cxmax]; /* å­˜æ”¾è™šæ‹Ÿæœºä»£ç çš„æ•°ç»„ */
+char mnemonic[fctnum][5];   /* è™šæ‹Ÿæœºä»£ç æŒ‡ä»¤åç§° */
+bool declbegsys[symnum];    /* è¡¨ç¤ºå£°æ˜å¼€å§‹çš„ç¬¦å·é›†åˆ */
+bool statbegsys[symnum];    /* è¡¨ç¤ºè¯­å¥å¼€å§‹çš„ç¬¦å·é›†åˆ */
+bool facbegsys[symnum];     /* è¡¨ç¤ºå› å­å¼€å§‹çš„ç¬¦å·é›†åˆ */
 
-char ch;                    /* ´æ·Åµ±Ç°¶ÁÈ¡µÄ×Ö·û£¬getch Ê¹ÓÃ */
-enum symbol sym;            /* µ±Ç°µÄ·ûºÅ */
-char id[al+1];              /* µ±Ç°ident£¬¶à³öµÄÒ»¸ö×Ö½ÚÓÃÓÚ´æ·Å0 */
-float num;                  /* µ±Ç°number */
-int cc, ll;                 /* getchÊ¹ÓÃµÄ¼ÆÊıÆ÷£¬cc±íÊ¾µ±Ç°×Ö·û(ch)µÄÎ»ÖÃ */
-int cx;                     /* ĞéÄâ»ú´úÂëÖ¸Õë, È¡Öµ·¶Î§[0, cxmax-1]*/
-char line[81];              /* ¶ÁÈ¡ĞĞ»º³åÇø */
-char a[al+1];               /* ÁÙÊ±×Ö·û´®£¬¶à³öµÄÒ»¸ö×Ö½ÚÓÃÓÚ´æ·Å0 */
-char word[norw][al];        /* ±£Áô×Ö */
-enum symbol wsym[norw];     /* ±£Áô×Ö¶ÔÓ¦µÄ·ûºÅÖµ */
-enum symbol ssym[256];      /* µ¥×Ö·ûµÄ·ûºÅÖµ */
+char ch;                    /* å­˜æ”¾å½“å‰è¯»å–çš„å­—ç¬¦ï¼Œgetch ä½¿ç”¨ */
+enum symbol sym;            /* å½“å‰çš„ç¬¦å· */
+char id[al+1];              /* å½“å‰identï¼Œå¤šå‡ºçš„ä¸€ä¸ªå­—èŠ‚ç”¨äºå­˜æ”¾0 */
+float num;                  /* å½“å‰number */
+int cc, ll;                 /* getchä½¿ç”¨çš„è®¡æ•°å™¨ï¼Œccè¡¨ç¤ºå½“å‰å­—ç¬¦(ch)çš„ä½ç½® */
+int cx;                     /* è™šæ‹Ÿæœºä»£ç æŒ‡é’ˆ, å–å€¼èŒƒå›´[0, cxmax-1]*/
+char line[81];              /* è¯»å–è¡Œç¼“å†²åŒº */
+char a[al+1];               /* ä¸´æ—¶å­—ç¬¦ä¸²ï¼Œå¤šå‡ºçš„ä¸€ä¸ªå­—èŠ‚ç”¨äºå­˜æ”¾0 */
+char word[norw][al];        /* ä¿ç•™å­— */
+enum symbol wsym[norw];     /* ä¿ç•™å­—å¯¹åº”çš„ç¬¦å·å€¼ */
+enum symbol ssym[256];      /* å•å­—ç¬¦çš„ç¬¦å·å€¼ */
 
-bool isend = false;         /* ÎÄ¼şÊÇ·ñ¶ÁÍê */
-bool isjmp[10];             /* statement_listÓï¾äÖĞ¿É·ñÓĞcontinueºÍbreakÓï¾ä */
-bool isfor = false;         /* µ±Ç°Ö´ĞĞÓï¾äÊÇ·ñÔÚfor-inÓï¾äÖĞ(Ñ­»·ÌåÄÚ³ıÍâ)ÄÚ */
-bool isfloat = false;       /* ±êÊ¶·ûËù´æÊı¾İÀàĞÍÊÇ·ñÊÇĞ¡Êı */
-int circlenum = 0;          /* µ±Ç°Î»ÓÚ¼¸¸öÑ­»·ÌåÄÚ */
-int continue_cx[10][100];   /* continueÓï¾äÎ»ÖÃ */
-int continue_n[10];         /* continueÓï¾ä¸öÊı */
-int break_cx[10][100];      /* breakÓï¾äÎ»ÖÃ */
-int break_n[10];            /* breakÓï¾ä¸öÊı */
-int exit_cx[100];           /* exitÓï¾äÎ»ÖÃ(×î¶à100´¦) */
-int exit_n = 0;             /* exitÓï¾ä¸öÊı */
-int parameter_n = 0;        /* º¯Êı()ÄÚ²ÎÊı¸öÊı */
-bool is_return = false;     /* º¯ÊıÊÇ·ñÓĞ·µ»ØÖµ */
+bool isend = false;         /* æ–‡ä»¶æ˜¯å¦è¯»å®Œ */
+bool isjmp[10];             /* statement_listè¯­å¥ä¸­å¯å¦æœ‰continueå’Œbreakè¯­å¥ */
+bool isfor = false;         /* å½“å‰æ‰§è¡Œè¯­å¥æ˜¯å¦åœ¨for-inè¯­å¥ä¸­(å¾ªç¯ä½“å†…é™¤å¤–)å†… */
+bool isfloat = false;       /* æ ‡è¯†ç¬¦æ‰€å­˜æ•°æ®ç±»å‹æ˜¯å¦æ˜¯å°æ•° */
+int circlenum = 0;          /* å½“å‰ä½äºå‡ ä¸ªå¾ªç¯ä½“å†… */
+int continue_cx[10][100];   /* continueè¯­å¥ä½ç½® */
+int continue_n[10];         /* continueè¯­å¥ä¸ªæ•° */
+int break_cx[10][100];      /* breakè¯­å¥ä½ç½® */
+int break_n[10];            /* breakè¯­å¥ä¸ªæ•° */
+int exit_cx[100];           /* exitè¯­å¥ä½ç½®(æœ€å¤š100å¤„) */
+int exit_n = 0;             /* exitè¯­å¥ä¸ªæ•° */
+int parameter_n = 0;        /* å‡½æ•°()å†…å‚æ•°ä¸ªæ•° */
+bool is_return = false;     /* å‡½æ•°æ˜¯å¦æœ‰è¿”å›å€¼ */
 
-char current[10];           /* µ±Ç°ËùÔÚº¯ÊıÃû */
-int varmax = 0;             /* È«¾Ö±äÁ¿µÄ×î´óÎ»ÖÃ */
+char current[10];           /* å½“å‰æ‰€åœ¨å‡½æ•°å */
+int varmax = 0;             /* å…¨å±€å˜é‡çš„æœ€å¤§ä½ç½® */
 
-/* ·ûºÅ±í½á¹¹ */
+/* ç¬¦å·è¡¨ç»“æ„ */
 struct tablestruct
 {
-    char name[al];          /* Ãû×Ö */
-    enum object kind;       /* ÀàĞÍ */
-    int val;                /* ÊıÖµ£¬½öconstÊ¹ÓÃ */
-    int level;              /* Ëù´¦²ã, ½öconst²»Ê¹ÓÃ */
-    int adr;                /* (¿ªÊ¼)µØÖ·, ½öconst²»Ê¹ÓÃ */
-    int size;               /* ĞèÒª·ÖÅäµÄÊı¾İÇø¿Õ¼ä, ½öfunction, arrayÊ¹ÓÃ */
-    int para_n;             /* º¯Êı²ÎÊı¸öÊı, ½öfunctionÊ¹ÓÃ */
-    bool isreturn;          /* ÊÇ·ñÓĞ·µ»ØÖµ, ½öfunctionÊ¹ÓÃ */
+    char name[al];          /* åå­— */
+    enum object kind;       /* ç±»å‹ */
+    int val;                /* æ•°å€¼ï¼Œä»…constä½¿ç”¨ */
+    int level;              /* æ‰€å¤„å±‚, ä»…constä¸ä½¿ç”¨ */
+    int adr;                /* (å¼€å§‹)åœ°å€, ä»…constä¸ä½¿ç”¨ */
+    int size;               /* éœ€è¦åˆ†é…çš„æ•°æ®åŒºç©ºé—´, ä»…function, arrayä½¿ç”¨ */
+    int para_n;             /* å‡½æ•°å‚æ•°ä¸ªæ•°, ä»…functionä½¿ç”¨ */
+    bool isreturn;          /* æ˜¯å¦æœ‰è¿”å›å€¼, ä»…functionä½¿ç”¨ */
 };
-struct tablestruct table[txmax]; /* ·ûºÅ±í */
+struct tablestruct table[txmax]; /* ç¬¦å·è¡¨ */
 
 
-/* È«¾Ö±äÁ¿ (ÊäÈëÊä³öÏà¹Ø) */
-FILE* fin;                  /* ÊäÈëÔ´ÎÄ¼ş */
-FILE* foutput;              /* Êä³öÎÄ¼ş¼°³ö´íÊ¾Òâ£¨ÈçÓĞ´í£©¡¢¸÷ĞĞ¶ÔÓ¦µÄÉú³É´úÂëÊ×µØÖ·£¨ÈçÎŞ´í£© */
-FILE* ftable;               /* Êä³ö·ûºÅ±í */
-FILE* fcode;                /* Êä³öĞéÄâ»ú´úÂë */
-FILE* fresult;              /* Êä³öÖ´ĞĞ½á¹û */
-char fname[al];             /* ÊäÈë×Ö·û´® (ÎÄ¼şÃû, ÊÇ·ñÑ¡Ôñ) */
-int err;                    /* ´íÎó¼ÆÊıÆ÷ */
+/* å…¨å±€å˜é‡ (è¾“å…¥è¾“å‡ºç›¸å…³) */
+FILE* fin;                  /* è¾“å…¥æºæ–‡ä»¶ */
+FILE* foutput;              /* è¾“å‡ºæ–‡ä»¶åŠå‡ºé”™ç¤ºæ„ï¼ˆå¦‚æœ‰é”™ï¼‰ã€å„è¡Œå¯¹åº”çš„ç”Ÿæˆä»£ç é¦–åœ°å€ï¼ˆå¦‚æ— é”™ï¼‰ */
+FILE* ftable;               /* è¾“å‡ºç¬¦å·è¡¨ */
+FILE* fcode;                /* è¾“å‡ºè™šæ‹Ÿæœºä»£ç  */
+FILE* fresult;              /* è¾“å‡ºæ‰§è¡Œç»“æœ */
+char fname[al];             /* è¾“å…¥å­—ç¬¦ä¸² (æ–‡ä»¶å, æ˜¯å¦é€‰æ‹©) */
+int err;                    /* é”™è¯¯è®¡æ•°å™¨ */
 
 
-/* º¯ÊıÉêÃ÷ */
+/* å‡½æ•°ç”³æ˜ */
 void error(int n);
 void getsym();
 void getch();
@@ -199,28 +198,28 @@ void listall();
 int base(int l, float* s, int b);
 
 
-/* Ö÷³ÌĞò */
+/* ä¸»ç¨‹åº */
 int main()
 {
-    bool nxtlev[symnum];                    /* ºó¼Ì·ûºÅ¼¯ºÏ */
+    bool nxtlev[symnum];                    /* åç»§ç¬¦å·é›†åˆ */
 
     printf("Input SW file?   ");
-    scanf("%s", fname);                     /* ÊäÈëÎÄ¼şÃû */
+    scanf("%s", fname);                     /* è¾“å…¥æ–‡ä»¶å */
 
-    if ((fin = fopen(fname, "r")) == NULL)  /* ÎÄ¼ş´ò¿ªÊ§°Ü */
+    if ((fin = fopen(fname, "r")) == NULL)  /* æ–‡ä»¶æ‰“å¼€å¤±è´¥ */
     {
         printf("Can't open the input file:(\n");
         exit(1);
     }
 
     ch = fgetc(fin);
-    if (ch == EOF)                          /*  ÎÄ¼şÎª¿Õ  */
+    if (ch == EOF)                          /*  æ–‡ä»¶ä¸ºç©º  */
     {
         printf("The input file is empty:(\n");
         fclose(fin);
         exit(1);
     }
-    rewind(fin);                            /* ½«ÎÄ¼şÄÚ²¿µÄÎ»ÖÃÖ¸ÕëÖØĞÂÖ¸ÏòÒ»¸öÁ÷£¨Êı¾İÁ÷/ÎÄ¼ş£©µÄ¿ªÍ· */
+    rewind(fin);                            /* å°†æ–‡ä»¶å†…éƒ¨çš„ä½ç½®æŒ‡é’ˆé‡æ–°æŒ‡å‘ä¸€ä¸ªæµï¼ˆæ•°æ®æµ/æ–‡ä»¶ï¼‰çš„å¼€å¤´ */
 
     if ((foutput = fopen("foutput.txt", "w")) == NULL)
     {
@@ -234,18 +233,18 @@ int main()
         exit(1);
     }
 
-    printf("List object codes?(Y/N)");      /* ÊÇ·ñÊä³öĞéÄâ»ú´úÂë */
+    printf("List object codes?(Y/N)");      /* æ˜¯å¦è¾“å‡ºè™šæ‹Ÿæœºä»£ç  */
     scanf("%s", fname);
     listswitch = (fname[0]=='y' || fname[0]=='Y');
 
-    printf("List symbol table?(Y/N)");      /* ÊÇ·ñÊä³ö·ûºÅ±í */
+    printf("List symbol table?(Y/N)");      /* æ˜¯å¦è¾“å‡ºç¬¦å·è¡¨ */
     scanf("%s", fname);
     tableswitch = (fname[0]=='y' || fname[0]=='Y');
 
-    init();                                 /* ³õÊ¼»¯ */
+    init();                                 /* åˆå§‹åŒ– */
 
     addset(nxtlev, declbegsys, statbegsys, symnum);
-    program(0, nxtlev, 0);                  /* ´¦Àí·Ö³ÌĞò */
+    program(0, nxtlev, 0);                  /* å¤„ç†åˆ†ç¨‹åº */
 
     if (sym != eofsym)
     {
@@ -270,10 +269,10 @@ int main()
             exit(1);
         }
 
-        listall();                          /* Êä³öËùÓĞ´úÂë */
+        listall();                          /* è¾“å‡ºæ‰€æœ‰ä»£ç  */
         fclose(fcode);
 
-        interpret();                        /* µ÷ÓÃ½âÊÍÖ´ĞĞ³ÌĞò */
+        interpret();                        /* è°ƒç”¨è§£é‡Šæ‰§è¡Œç¨‹åº */
         fclose(fresult);
       }
     else
@@ -290,12 +289,12 @@ int main()
 }
 
 
-/* ³õÊ¼»¯ */
+/* åˆå§‹åŒ– */
 void init()
 {
     int i;
 
-    /* ÉèÖÃµ¥×Ö·û·ûºÅ */
+    /* è®¾ç½®å•å­—ç¬¦ç¬¦å· */
     for (i = 0; i < 256; i++)
     {
         ssym[i] = nul;
@@ -316,7 +315,7 @@ void init()
     ssym['['] = lbrack;
     ssym[']'] = rbrack;
 
-    /* ÉèÖÃ±£Áô×ÖÃû×Ö,°´ÕÕ×ÖÄ¸Ë³Ğò£¬±ãÓÚ¶ş·Ö²éÕÒ */
+    /* è®¾ç½®ä¿ç•™å­—åå­—,æŒ‰ç…§å­—æ¯é¡ºåºï¼Œä¾¿äºäºŒåˆ†æŸ¥æ‰¾ */
     strcpy(&(word[0][0]), "and");
     strcpy(&(word[1][0]), "bool");
     strcpy(&(word[2][0]), "break");
@@ -347,7 +346,7 @@ void init()
     strcpy(&(word[27][0]), "var");
     strcpy(&(word[28][0]), "while");
 
-    /* ÉèÖÃ±£Áô×Ö·ûºÅ */
+    /* è®¾ç½®ä¿ç•™å­—ç¬¦å· */
     wsym[0] = andsym;
     wsym[1] = boolsym;
     wsym[2] = breaksym;
@@ -378,7 +377,7 @@ void init()
     wsym[27] = varsym;
     wsym[28] = whilesym;
 
-    /* ÉèÖÃÖ¸ÁîÃû³Æ */
+    /* è®¾ç½®æŒ‡ä»¤åç§° */
     strcpy(&(mnemonic[lit][0]), "lit");
     strcpy(&(mnemonic[opr][0]), "opr");
     strcpy(&(mnemonic[lod][0]), "lod");
@@ -388,7 +387,7 @@ void init()
     strcpy(&(mnemonic[jmp][0]), "jmp");
     strcpy(&(mnemonic[jpc][0]), "jpc");
 
-    /* ÉèÖÃ·ûºÅ¼¯ */
+    /* è®¾ç½®ç¬¦å·é›† */
     for (i = 0; i < symnum; i++)
     {
         declbegsys[i] = false;
@@ -396,14 +395,14 @@ void init()
         facbegsys[i] = false;
     }
 
-    /* ÉèÖÃÉùÃ÷¿ªÊ¼·ûºÅ¼¯ */
+    /* è®¾ç½®å£°æ˜å¼€å§‹ç¬¦å·é›† */
     declbegsys[varsym] = true;
     declbegsys[funcsym] = true;
     declbegsys[boolsym] = true;
     declbegsys[constsym] = true;
     declbegsys[floatsym] = true;
 
-    /* ÉèÖÃÓï¾ä¿ªÊ¼·ûºÅ¼¯ */
+    /* è®¾ç½®è¯­å¥å¼€å§‹ç¬¦å·é›† */
     statbegsys[ifsym] = true;
     statbegsys[whilesym] = true;
     statbegsys[readsym] = true;
@@ -417,7 +416,7 @@ void init()
     statbegsys[repeatsym] = true;
     statbegsys[exitsym] = true;
 
-    /* ÉèÖÃÒò×Ó¿ªÊ¼·ûºÅ¼¯ */
+    /* è®¾ç½®å› å­å¼€å§‹ç¬¦å·é›† */
     facbegsys[ident] = true;
     facbegsys[number] = true;
     facbegsys[lparen] = true;
@@ -426,8 +425,8 @@ void init()
     facbegsys[truesym] = true;
     facbegsys[falsesym] = true;
 
-    /* ³õÊ¼»¯break, continue¼ÇÂ¼¸öÊıÎªÁã,
-     * ³õÊ¼»¯±ê¼ÇÎª²»ÔÚÑ­»·ÌåÖĞ */
+    /* åˆå§‹åŒ–break, continueè®°å½•ä¸ªæ•°ä¸ºé›¶,
+     * åˆå§‹åŒ–æ ‡è®°ä¸ºä¸åœ¨å¾ªç¯ä½“ä¸­ */
     for(i = 0; i < 10; i++)
     {
         break_n[i] = 0;
@@ -441,15 +440,15 @@ void init()
 }
 
 
-/* ÓÃÊı×éÊµÏÖ¼¯ºÏµÄ¼¯ºÏÔËËã */
+/* ç”¨æ•°ç»„å®ç°é›†åˆçš„é›†åˆè¿ç®— */
 
-/* ÊÇ·ñÔÚ¼¯ºÏÖĞµÄÕæ¼ÙÔËËã */
+/* æ˜¯å¦åœ¨é›†åˆä¸­çš„çœŸå‡è¿ç®— */
 int inset(int e, bool* s)
 {
     return s[e];
 }
 
-/* ²¢ÔËËã s1Us2 */
+/* å¹¶è¿ç®— s1Us2 */
 int addset(bool* sr, bool* s1, bool* s2, int n)
 {
     int i;
@@ -460,7 +459,7 @@ int addset(bool* sr, bool* s1, bool* s2, int n)
     return 0;
 }
 
-/* ²îÔËËã s1-s2 */
+/* å·®è¿ç®— s1-s2 */
 int subset(bool* sr, bool* s1, bool* s2, int n)
 {
     int i;
@@ -471,7 +470,7 @@ int subset(bool* sr, bool* s1, bool* s2, int n)
     return 0;
 }
 
-/* ½»ÔËËã s1ns2*/
+/* äº¤è¿ç®— s1ns2*/
 int mulset(bool* sr, bool* s1, bool* s2, int n)
 {
     int i;
@@ -483,12 +482,12 @@ int mulset(bool* sr, bool* s1, bool* s2, int n)
 }
 
 
-/* ³ö´í´¦Àí£¬´òÓ¡³ö´íÎ»ÖÃºÍ´íÎó±àÂë */
+/* å‡ºé”™å¤„ç†ï¼Œæ‰“å°å‡ºé”™ä½ç½®å’Œé”™è¯¯ç¼–ç  */
 void error(int n)
 {
     char space[81];
-    memset(space,32,81);    /* 32ÎªasiiÂë±íµÄ¿Õ¸ñ ³õÊ¼»¯×Ö·û´®ÎªÈ«¿Õ¸ñ*/
-    space[cc-1]=0;          /* ³ö´íÊ±µ±Ç°·ûºÅÒÑ¾­¶ÁÍê£¬ËùÒÔcc-1 */
+    memset(space,32,81);    /* 32ä¸ºasiiç è¡¨çš„ç©ºæ ¼ åˆå§‹åŒ–å­—ç¬¦ä¸²ä¸ºå…¨ç©ºæ ¼*/
+    space[cc-1]=0;          /* å‡ºé”™æ—¶å½“å‰ç¬¦å·å·²ç»è¯»å®Œï¼Œæ‰€ä»¥cc-1 */
 
     printf("**%s^%d\n", space, n);
     fprintf(foutput,"**%s^%d\n", space, n);
@@ -503,45 +502,45 @@ void error(int n)
 
 
 /*
- * ¹ıÂË¿Õ¸ñºÍÁ½ÖÖ±íÊ¾·½·¨µÄ×¢ÊÍ£¬¶ÁÈ¡Ò»¸ö×Ö·û
- * Ã¿´Î¶ÁÒ»ĞĞ£¬´æÈëline»º³åÇø£¬line±»getsymÈ¡¿ÕºóÔÙ¶ÁÒ»ĞĞ
- * ±»º¯Êıgetsymµ÷ÓÃ
+ * è¿‡æ»¤ç©ºæ ¼å’Œä¸¤ç§è¡¨ç¤ºæ–¹æ³•çš„æ³¨é‡Šï¼Œè¯»å–ä¸€ä¸ªå­—ç¬¦
+ * æ¯æ¬¡è¯»ä¸€è¡Œï¼Œå­˜å…¥lineç¼“å†²åŒºï¼Œlineè¢«getsymå–ç©ºåå†è¯»ä¸€è¡Œ
+ * è¢«å‡½æ•°getsymè°ƒç”¨
  */
 void getch()
 {
-    if (cc == ll)           /* ÅĞ¶Ï»º³åÇøÖĞÊÇ·ñÓĞ×Ö·û£¬ÈôÎŞ×Ö·û£¬Ôò¶ÁÈëÏÂÒ»ĞĞ×Ö·ûµ½»º³åÇøÖĞ */
-    {                       /* ÎŞ»º´æÇé¿ö */
-        if (feof(fin))      /* feof(fin)·ÇÁãÔòÎÄ¼ş½áÊø */
+    if (cc == ll)           /* åˆ¤æ–­ç¼“å†²åŒºä¸­æ˜¯å¦æœ‰å­—ç¬¦ï¼Œè‹¥æ— å­—ç¬¦ï¼Œåˆ™è¯»å…¥ä¸‹ä¸€è¡Œå­—ç¬¦åˆ°ç¼“å†²åŒºä¸­ */
+    {                       /* æ— ç¼“å­˜æƒ…å†µ */
+        if (feof(fin))      /* feof(fin)éé›¶åˆ™æ–‡ä»¶ç»“æŸ */
         {
             isend = true;
         }
 
-        printf("%d ", cx);  /* Êä³öĞéÄâ»ú´úÂëÖ¸Õë */
+        printf("%d ", cx);  /* è¾“å‡ºè™šæ‹Ÿæœºä»£ç æŒ‡é’ˆ */
         fprintf(foutput,"%d ", cx);
 
-        ll = 0;             /* ÎÄ¼şÃ»ÓĞ½áÊø */
+        ll = 0;             /* æ–‡ä»¶æ²¡æœ‰ç»“æŸ */
         cc = 0;
 
         ch = ' ';
-        while (ch != 10)   /* 10ÎªasiiÂë±íµÄ»»ĞĞ¼ü */
+        while (ch != 10)   /* 10ä¸ºasiiç è¡¨çš„æ¢è¡Œé”® */
         {
             char pre = ch;
-            if (EOF == fscanf(fin,"%c", &ch) || (pre == '/' && ch == '/' ))   /* Èç¹û¶ÁÈ¡µ½ÎÄ¼ş½áÊø/ĞĞ×¢ÊÍ */
+            if (EOF == fscanf(fin,"%c", &ch) || (pre == '/' && ch == '/' ))   /* å¦‚æœè¯»å–åˆ°æ–‡ä»¶ç»“æŸ/è¡Œæ³¨é‡Š */
             {
-                if(ll != 0)                         /* ¸ÃĞĞÍ·Á½¸ö×Ö·û²»ÊÇ"//" */
+                if(ll != 0)                         /* è¯¥è¡Œå¤´ä¸¤ä¸ªå­—ç¬¦ä¸æ˜¯"//" */
                 {
-                    line[ll] = 0;                   /* ×Ö·û´®½áÊø\0, ¼´¸ÃĞĞ»º´æ½áÊø */
+                    line[ll] = 0;                   /* å­—ç¬¦ä¸²ç»“æŸ\0, å³è¯¥è¡Œç¼“å­˜ç»“æŸ */
                 }
                 if(pre == '/' && ch == '/')
                 {
-                    while(EOF != fscanf(fin, "%c", &ch) && ch != 10)          /* ºöÂÔµô"//"ºóÃæµÄÄÚÈİÖ±ÖÁ¶Áµ½'\n' */
+                    while(EOF != fscanf(fin, "%c", &ch) && ch != 10)          /* å¿½ç•¥æ‰"//"åé¢çš„å†…å®¹ç›´è‡³è¯»åˆ°'\n' */
                     {
                         ;
                     }
                     if(ch !=10)
                         isend = true;
 
-                    if(ll == 0)                     /* ¸ÃĞĞÍ·Á½¸ö×Ö·û¾ÍÊÇ"//" */
+                    if(ll == 0)                     /* è¯¥è¡Œå¤´ä¸¤ä¸ªå­—ç¬¦å°±æ˜¯"//" */
                     {
                         ch = ' ';
                         continue;
@@ -559,7 +558,7 @@ void getch()
             if(pre == '/' && ch == '*')
             {
                 line[ll] = 0;
-                bool isenter = false;               /* ¿é×¢ÊÍÄÚÊÇ·ñÓĞ»»ĞĞ·û, ÓĞÔòÊä³öÒ»¸ö»»ĞĞ */
+                bool isenter = false;               /* å—æ³¨é‡Šå†…æ˜¯å¦æœ‰æ¢è¡Œç¬¦, æœ‰åˆ™è¾“å‡ºä¸€ä¸ªæ¢è¡Œ */
                 fscanf(fin, "%c", &pre);
                 fscanf(fin, "%c", &ch);
                 if(pre == '\n')
@@ -571,10 +570,10 @@ void getch()
                         isenter = true;
                     if (EOF == fscanf(fin,"%c", &ch))
                     {
-                        error(29);                  // È±ÉÙ"*/"
+                        error(29);                  // ç¼ºå°‘"*/"
                     }
                 }
-                if(ll == 0)                         // ¸ÃĞĞÍ·Á½¸ö×Ö·û¾ÍÊÇ"/*"
+                if(ll == 0)                         // è¯¥è¡Œå¤´ä¸¤ä¸ªå­—ç¬¦å°±æ˜¯"/*"
                 {
                     ch = ' ';
                     continue;
@@ -588,14 +587,14 @@ void getch()
             }
             if(pre == '/')
             {
-                printf("%c", pre);                   /* Í¨¹ıÉÏÃæÅĞ¶ÏÎ´Ìø³öÑ­»·Ôò'/'·Ç×¢ÊÍËùÓÃ¿ÉÒÔÊä³ö */
+                printf("%c", pre);                   /* é€šè¿‡ä¸Šé¢åˆ¤æ–­æœªè·³å‡ºå¾ªç¯åˆ™'/'éæ³¨é‡Šæ‰€ç”¨å¯ä»¥è¾“å‡º */
                 fprintf(foutput, "%c", pre);
                 line[ll] = pre;
                 ll++;
             }
             if(ch != '/')
             {
-                printf("%c", ch);                   /* µ±Ç°×Ö·ûÎª'/', ÊÇ·ñÓÃÓÚ×¢ÊÍÓĞ´ı½øÒ»²½ÅĞ¶Ï */
+                printf("%c", ch);                   /* å½“å‰å­—ç¬¦ä¸º'/', æ˜¯å¦ç”¨äºæ³¨é‡Šæœ‰å¾…è¿›ä¸€æ­¥åˆ¤æ–­ */
                 fprintf(foutput, "%c", ch);
                 line[ll] = ch;
                 ll++;
@@ -607,13 +606,13 @@ void getch()
         ch = 0;
     else
     {
-        ch = line[cc];          /* ÓĞ»º´æÇé¿ö */
+        ch = line[cc];          /* æœ‰ç¼“å­˜æƒ…å†µ */
         cc++;
     }
 }
 
 
-/* ´Ê·¨·ÖÎö£¬»ñÈ¡Ò»¸ö·ûºÅ */
+/* è¯æ³•åˆ†æï¼Œè·å–ä¸€ä¸ªç¬¦å· */
 void getsym()
 {
     int i, j, k;
@@ -621,14 +620,14 @@ void getsym()
         sym = eofsym;
     else
     {
-        while (ch == ' ' || ch == 10 || ch == 9)    /* ¹ıÂË¿Õ¸ñ¡¢»»ĞĞºÍÖÆ±í·û */
+        while (ch == ' ' || ch == 10 || ch == 9)    /* è¿‡æ»¤ç©ºæ ¼ã€æ¢è¡Œå’Œåˆ¶è¡¨ç¬¦ */
         {
             getch();
         }
 
-        if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z')) /* µ±Ç°µ¥´ÊÊÇ±êÊ¶·û»òÊÇ±£Áô×Ö */
+        if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z')) /* å½“å‰å•è¯æ˜¯æ ‡è¯†ç¬¦æˆ–æ˜¯ä¿ç•™å­— */
         {
-            /* µ¥´Ê±£´æ½ø×Ö·û´®aÖĞ */
+            /* å•è¯ä¿å­˜è¿›å­—ç¬¦ä¸²aä¸­ */
             k = 0;
             do {
                 if(k < al)
@@ -642,7 +641,7 @@ void getsym()
 
             strcpy(id, a);
 
-            /* ËÑË÷µ±Ç°µ¥´ÊÊÇ·ñÎª±£Áô×Ö£¬Ê¹ÓÃ¶ş·Ö·¨²éÕÒ */
+            /* æœç´¢å½“å‰å•è¯æ˜¯å¦ä¸ºä¿ç•™å­—ï¼Œä½¿ç”¨äºŒåˆ†æ³•æŸ¥æ‰¾ */
             i = 0;
             j = norw - 1;
             do {
@@ -656,7 +655,7 @@ void getsym()
                     i = k + 1;
                 }
             } while (i <= j);
-            if (i-1 > j)        /* µ±Ç°µ¥´ÊÎª±£Áô×Ö */
+            if (i-1 > j)        /* å½“å‰å•è¯ä¸ºä¿ç•™å­— */
             {
                 sym = wsym[k];
                 if(sym == wsym[10])
@@ -670,16 +669,16 @@ void getsym()
                     num = 1; // true
                 }
             }
-            else                /* µ±Ç°µ¥´ÊÎª±êÊ¶·û */
+            else                /* å½“å‰å•è¯ä¸ºæ ‡è¯†ç¬¦ */
             {
                 sym = ident;
             }
         }
-        else if (ch >= '0' && ch <= '9') /* µ±Ç°µÄµ¥´ÊÊÇÊı×Ö */
+        else if (ch >= '0' && ch <= '9') /* å½“å‰çš„å•è¯æ˜¯æ•°å­— */
         {
             sym = number;
 
-            /* »ñÈ¡Êı×ÖµÄÖµ */
+            /* è·å–æ•°å­—çš„å€¼ */
             num = 0;
             k = 0;
             do {
@@ -700,7 +699,7 @@ void getsym()
                 } while(ch >= '0' && ch <= '9');
             }
             k--;
-            if (k > nmax)       /* Êı×ÖÎ»ÊıÌ«¶à */
+            if (k > nmax)       /* æ•°å­—ä½æ•°å¤ªå¤š */
             {
                 error(30);
             }
@@ -715,7 +714,7 @@ void getsym()
             }
             else
             {
-                sym = nul;      /* ²»ÄÜÊ¶±ğµÄ·ûºÅ */
+                sym = nul;      /* ä¸èƒ½è¯†åˆ«çš„ç¬¦å· */
             }
         }
         else if(ch == '.')
@@ -731,15 +730,15 @@ void getsym()
                 }
                 else
                 {
-                    sym = nul;  /* ²»ÄÜÊ¶±ğµÄ·ûºÅ */
+                    sym = nul;  /* ä¸èƒ½è¯†åˆ«çš„ç¬¦å· */
                 }
             }
             else
             {
-                sym = nul;      /* ²»ÄÜÊ¶±ğµÄ·ûºÅ */
+                sym = nul;      /* ä¸èƒ½è¯†åˆ«çš„ç¬¦å· */
             }
         }
-        else if (ch == '<')     /* ¼ì²âĞ¡ÓÚ»òĞ¡ÓÚµÈÓÚ·ûºÅ */
+        else if (ch == '<')     /* æ£€æµ‹å°äºæˆ–å°äºç­‰äºç¬¦å· */
         {
             getch();
             if (ch == '=')
@@ -752,7 +751,7 @@ void getsym()
                sym = lss;
             }
         }
-        else if (ch == '>')     /* ¼ì²â´óÓÚ»ò´óÓÚµÈÓÚ·ûºÅ */
+        else if (ch == '>')     /* æ£€æµ‹å¤§äºæˆ–å¤§äºç­‰äºç¬¦å· */
         {
             getch();
             if (ch == '=')
@@ -765,7 +764,7 @@ void getsym()
                 sym = gtr;
             }
         }
-        else if (ch == '=')     /* ¼ì²âµÈÓÚ·ûºÅ */
+        else if (ch == '=')     /* æ£€æµ‹ç­‰äºç¬¦å· */
         {
             getch();
             if (ch == '=')
@@ -775,7 +774,7 @@ void getsym()
             }
             else
             {
-                sym = becomes;  /* ¸³Öµ·ûºÅ */
+                sym = becomes;  /* èµ‹å€¼ç¬¦å· */
             }
         }
         else if (ch == '+')
@@ -810,7 +809,7 @@ void getsym()
         }
         else
         {
-            sym = ssym[ch];     /* µ±·ûºÅ²»Âú×ãÉÏÊöÌõ¼şÊ±£¬È«²¿°´ÕÕµ¥×Ö·û·ûºÅ´¦Àí */
+            sym = ssym[ch];     /* å½“ç¬¦å·ä¸æ»¡è¶³ä¸Šè¿°æ¡ä»¶æ—¶ï¼Œå…¨éƒ¨æŒ‰ç…§å•å­—ç¬¦ç¬¦å·å¤„ç† */
             getch();
         }
     }
@@ -818,7 +817,7 @@ void getsym()
 
 
 /*
- * Éú³ÉĞéÄâ»ú´úÂë
+ * ç”Ÿæˆè™šæ‹Ÿæœºä»£ç 
  *
  * x: instruction.f;
  * y: instruction.l;
@@ -828,12 +827,12 @@ void gen(enum fct x, int y, float z)
 {
     if (cx >= cxmax)
     {
-        printf("Program is too long!X(\n");               /* Éú³ÉµÄĞéÄâ»ú´úÂë³ÌĞò¹ı³¤ */
+        printf("Program is too long!X(\n");               /* ç”Ÿæˆçš„è™šæ‹Ÿæœºä»£ç ç¨‹åºè¿‡é•¿ */
         exit(1);
     }
     if ( z >= amax)
     {
-        printf("Displacement address is too big!8(\n");   /* µØÖ·Æ«ÒÆÔ½½ç */
+        printf("Displacement address is too big!8(\n");   /* åœ°å€åç§»è¶Šç•Œ */
         exit(1);
     }
     code[cx].f = x;
@@ -844,22 +843,22 @@ void gen(enum fct x, int y, float z)
 
 
 /*
- * ²âÊÔµ±Ç°·ûºÅÊÇ·ñºÏ·¨
+ * æµ‹è¯•å½“å‰ç¬¦å·æ˜¯å¦åˆæ³•
  *
- * ÔÚÓï·¨·ÖÎö³ÌĞòµÄÈë¿ÚºÍ³ö¿Ú´¦µ÷ÓÃ²âÊÔº¯Êıtest£¬
- * ¼ì²éµ±Ç°µ¥´Ê½øÈëºÍÍË³ö¸ÃÓï·¨µ¥Î»µÄºÏ·¨ĞÔ
+ * åœ¨è¯­æ³•åˆ†æç¨‹åºçš„å…¥å£å’Œå‡ºå£å¤„è°ƒç”¨æµ‹è¯•å‡½æ•°testï¼Œ
+ * æ£€æŸ¥å½“å‰å•è¯è¿›å…¥å’Œé€€å‡ºè¯¥è¯­æ³•å•ä½çš„åˆæ³•æ€§
  *
- * s1:  ĞèÒªµÄµ¥´Ê¼¯ºÏ
- * s2:  Èç¹û²»ÊÇĞèÒªµÄµ¥´Ê£¬ÔÚÄ³Ò»³ö´í×´Ì¬Ê±£¬
- *      ¿É»Ö¸´Óï·¨·ÖÎö¼ÌĞøÕı³£¹¤×÷µÄ²¹³äµ¥´Ê·ûºÅ¼¯ºÏ
- * n:   ´íÎó±àºÅ
+ * s1:  éœ€è¦çš„å•è¯é›†åˆ
+ * s2:  å¦‚æœä¸æ˜¯éœ€è¦çš„å•è¯ï¼Œåœ¨æŸä¸€å‡ºé”™çŠ¶æ€æ—¶ï¼Œ
+ *      å¯æ¢å¤è¯­æ³•åˆ†æç»§ç»­æ­£å¸¸å·¥ä½œçš„è¡¥å……å•è¯ç¬¦å·é›†åˆ
+ * n:   é”™è¯¯ç¼–å·
  */
 void test(bool* s1, bool* s2, int n)
 {
     if (!inset(sym, s1))
     {
         error(n);
-        /* µ±¼ì²â²»Í¨¹ıÊ±£¬²»Í£»ñÈ¡·ûºÅ£¬Ö±µ½ËüÊôÓÚĞèÒªµÄ¼¯ºÏ»ò²¹¾ÈµÄ¼¯ºÏ */
+        /* å½“æ£€æµ‹ä¸é€šè¿‡æ—¶ï¼Œä¸åœè·å–ç¬¦å·ï¼Œç›´åˆ°å®ƒå±äºéœ€è¦çš„é›†åˆæˆ–è¡¥æ•‘çš„é›†åˆ */
         while ((!inset(sym,s1)) && (!inset(sym,s2)))
         {
             getsym();
@@ -869,28 +868,28 @@ void test(bool* s1, bool* s2, int n)
 
 
 /*
- * ±àÒë³ÌĞòÖ÷Ìå
+ * ç¼–è¯‘ç¨‹åºä¸»ä½“
  *
- * tx:     ·ûºÅ±íµ±Ç°Î²Ö¸Õë
- * fsys:   µ±Ç°Ä£¿éºó¼Ì·ûºÅ¼¯ºÏ
- * lev:    µ±Ç°·Ö³ÌĞòËùÔÚ²ã
+ * tx:     ç¬¦å·è¡¨å½“å‰å°¾æŒ‡é’ˆ
+ * fsys:   å½“å‰æ¨¡å—åç»§ç¬¦å·é›†åˆ
+ * lev:    å½“å‰åˆ†ç¨‹åºæ‰€åœ¨å±‚
  */
 void program(int tx, bool* fsys, int lev)
 {
     int i;
-    int dx;                 /* ¼ÇÂ¼Êı¾İ·ÖÅäµÄÏà¶ÔµØÖ· */
-    int tx0;                /* ±£Áô³õÊ¼tx */
-    int cx0;                /* ±£Áô³õÊ¼cx */
-    bool nxtlev[symnum];    /* ÔÚÏÂ¼¶º¯ÊıµÄ²ÎÊıÖĞ£¬·ûºÅ¼¯ºÏ¾ùÎªÖµ²Î£¬µ«ÓÉÓÚÊ¹ÓÃÊı×éÊµÏÖ£¬
-                               ´«µİ½øÀ´µÄÊÇÖ¸Õë£¬Îª·ÀÖ¹ÏÂ¼¶º¯Êı¸Ä±äÉÏ¼¶º¯ÊıµÄ¼¯ºÏ£¬¿ª±Ù
-                               ĞÂµÄ¿Õ¼ä´«µİ¸øÏÂ¼¶º¯Êı*/
+    int dx;                 /* è®°å½•æ•°æ®åˆ†é…çš„ç›¸å¯¹åœ°å€ */
+    int tx0;                /* ä¿ç•™åˆå§‹tx */
+    int cx0;                /* ä¿ç•™åˆå§‹cx */
+    bool nxtlev[symnum];    /* åœ¨ä¸‹çº§å‡½æ•°çš„å‚æ•°ä¸­ï¼Œç¬¦å·é›†åˆå‡ä¸ºå€¼å‚ï¼Œä½†ç”±äºä½¿ç”¨æ•°ç»„å®ç°ï¼Œ
+                               ä¼ é€’è¿›æ¥çš„æ˜¯æŒ‡é’ˆï¼Œä¸ºé˜²æ­¢ä¸‹çº§å‡½æ•°æ”¹å˜ä¸Šçº§å‡½æ•°çš„é›†åˆï¼Œå¼€è¾Ÿ
+                               æ–°çš„ç©ºé—´ä¼ é€’ç»™ä¸‹çº§å‡½æ•°*/
 
-    dx = 3;                 /* Èı¸ö¿Õ¼äÓÃÓÚ´æ·Å¾²Ì¬Á´SL¡¢¶¯Ì¬Á´DLºÍ·µ»ØµØÖ·RA  */
-    tx0 = tx;               /* ¼ÇÂ¼±¾²ã±êÊ¶·ûµÄ³õÊ¼Î»ÖÃ */
-    table[tx0].adr = cx;    /* ¼ÇÂ¼µ±Ç°²ã´úÂëµÄ¿ªÊ¼Î»ÖÃ */
-    gen(jmp, 0, 0);         /* ²úÉúÌø×ªÖ¸Áî£¬Ìø×ªÎ»ÖÃÎ´ÖªÔİÊ±Ìî0 */
+    dx = 3;                 /* ä¸‰ä¸ªç©ºé—´ç”¨äºå­˜æ”¾é™æ€é“¾SLã€åŠ¨æ€é“¾DLå’Œè¿”å›åœ°å€RA  */
+    tx0 = tx;               /* è®°å½•æœ¬å±‚æ ‡è¯†ç¬¦çš„åˆå§‹ä½ç½® */
+    table[tx0].adr = cx;    /* è®°å½•å½“å‰å±‚ä»£ç çš„å¼€å§‹ä½ç½® */
+    gen(jmp, 0, 0);         /* äº§ç”Ÿè·³è½¬æŒ‡ä»¤ï¼Œè·³è½¬ä½ç½®æœªçŸ¥æš‚æ—¶å¡«0 */
 
-    if (lev > levmax)       /* Ç¶Ì×²ãÊı¹ı¶à */
+    if (lev > levmax)       /* åµŒå¥—å±‚æ•°è¿‡å¤š */
     {
         error(32);
     }
@@ -900,19 +899,19 @@ void program(int tx, bool* fsys, int lev)
     var_declaration_list(&tx, &dx, lev);
     varmax = tx;
 
-    while (sym == funcsym)  /* Óöµ½¹ı³ÌÉùÃ÷·ûºÅ£¬¿ªÊ¼´¦Àí¹ı³ÌÉùÃ÷ */
+    while (sym == funcsym)  /* é‡åˆ°è¿‡ç¨‹å£°æ˜ç¬¦å·ï¼Œå¼€å§‹å¤„ç†è¿‡ç¨‹å£°æ˜ */
     {
         getsym();
         strcpy(current, id);
         printf("id:%s\n", id);
         if (sym == ident)
         {
-            enter(function, &tx, &dx, lev);   /* ÌîĞ´·ûºÅ±í */
+            enter(function, &tx, &dx, lev);   /* å¡«å†™ç¬¦å·è¡¨ */
             getsym();
         }
         else
         {
-            error(41);      /* functionºóÓ¦Îª±êÊ¶·û */
+            error(41);      /* functionååº”ä¸ºæ ‡è¯†ç¬¦ */
         }
 
         if (sym == lparen)
@@ -921,7 +920,7 @@ void program(int tx, bool* fsys, int lev)
         }
         else
         {
-            error(17);     /* º¯ÊıÃûºóÉÙÁË"(" */
+            error(17);     /* å‡½æ•°ååå°‘äº†"(" */
         }
 
         parameter_n = 0;
@@ -996,21 +995,21 @@ void program(int tx, bool* fsys, int lev)
         }
         else
         {
-            error(18);      /* º¯ÊıÃûºóÉÙÁË")" */
+            error(18);      /* å‡½æ•°ååå°‘äº†")" */
         }
         if (sym == lbrace)
         {
-            //getsym();     programÄÚ¿ªÍ·ÓĞgetsym()¹Ê²»ĞèÒª´Ë´¦µÄgetsym()
+            //getsym();     programå†…å¼€å¤´æœ‰getsym()æ•…ä¸éœ€è¦æ­¤å¤„çš„getsym()
         }
         else
         {
-            error(19);     /* º¯ÊıÃûºóÉÙÁË"{" */
+            error(19);     /* å‡½æ•°ååå°‘äº†"{" */
         }
 
         memcpy(nxtlev, fsys, sizeof(bool) * symnum);
         nxtlev[rbrace] = true;
 
-        // start: program(tx, nxtlev, lev + 1);   /* Ç¶Ì×µ÷ÓÃ, ÓÖÒòÎªlevmax=1, ËùÒÔÏÂÒ»²ã²»¿ÉÒÔÓĞfunc¶¨Òå*/
+        // start: program(tx, nxtlev, lev + 1);   /* åµŒå¥—è°ƒç”¨, åˆå› ä¸ºlevmax=1, æ‰€ä»¥ä¸‹ä¸€å±‚ä¸å¯ä»¥æœ‰funcå®šä¹‰*/
         int ii,idx,itx0,icx0;
         bool inxtlev[symnum];
         idx = 3;
@@ -1036,7 +1035,7 @@ void program(int tx, bool* fsys, int lev)
         table[itx0].para_n = parameter_n;
         icx0 = cx;
         gen(ini, 0, idx);
-        if(tableswitch)                     /* Êä³ö·ûºÅ±í */
+        if(tableswitch)                     /* è¾“å‡ºç¬¦å·è¡¨ */
         {
             for (ii = 1; ii <= tx; ii++)
             {
@@ -1078,7 +1077,7 @@ void program(int tx, bool* fsys, int lev)
             fprintf(ftable, "\n");
         }
 
-        memcpy(inxtlev, fsys, sizeof(bool) * symnum);  /* Ã¿¸öºó¼Ì·ûºÅ¼¯ºÏ¶¼°üº¬ÉÏ²ãºó¼Ì·ûºÅ¼¯ºÏ£¬ÒÔ±ã²¹¾È */
+        memcpy(inxtlev, fsys, sizeof(bool) * symnum);  /* æ¯ä¸ªåç»§ç¬¦å·é›†åˆéƒ½åŒ…å«ä¸Šå±‚åç»§ç¬¦å·é›†åˆï¼Œä»¥ä¾¿è¡¥æ•‘ */
         inxtlev[rbrace] = true;
         statement_list(&tx, inxtlev, lev+1);
 
@@ -1087,7 +1086,7 @@ void program(int tx, bool* fsys, int lev)
         {
             getsym();
             memcpy(inxtlev, fsys, sizeof(bool) * symnum);
-            inxtlev[semicolon] = true;           /* ºó¼Ì·ûºÅÎª';' */
+            inxtlev[semicolon] = true;           /* åç»§ç¬¦å·ä¸º';' */
             expression(&tx, inxtlev, lev + 1);
             is_return = true;
 
@@ -1105,7 +1104,7 @@ void program(int tx, bool* fsys, int lev)
             code[exit_cx[--exit_n]].a = cx;
         }
 
-        gen(opr, 0, 0);                               /* Ã¿¸ö¹ı³Ì³ö¿Ú¶¼ÒªÊ¹ÓÃµÄÊÍ·ÅÊı¾İ¶ÎÖ¸Áî */
+        gen(opr, 0, 0);                               /* æ¯ä¸ªè¿‡ç¨‹å‡ºå£éƒ½è¦ä½¿ç”¨çš„é‡Šæ”¾æ•°æ®æ®µæŒ‡ä»¤ */
 
         for(ii = 0; ii < 10; ii++)
         {
@@ -1114,8 +1113,8 @@ void program(int tx, bool* fsys, int lev)
                 error(23);
             }
         }
-        listcode(icx0);                                /* Êä³ö±¾·Ö³ÌĞòÉú³ÉµÄ´úÂë */
-        // end: program(tx, nxtlev, lev + 1);   /* Ç¶Ì×µ÷ÓÃ, ÓÖÒòÎªlevmax=1, ËùÒÔÏÂÒ»²ã²»¿ÉÒÔÓĞfunc¶¨Òå*/
+        listcode(icx0);                                /* è¾“å‡ºæœ¬åˆ†ç¨‹åºç”Ÿæˆçš„ä»£ç  */
+        // end: program(tx, nxtlev, lev + 1);   /* åµŒå¥—è°ƒç”¨, åˆå› ä¸ºlevmax=1, æ‰€ä»¥ä¸‹ä¸€å±‚ä¸å¯ä»¥æœ‰funcå®šä¹‰*/
 
         if (sym == rbrace)
         {
@@ -1126,20 +1125,20 @@ void program(int tx, bool* fsys, int lev)
         }
         else
         {
-            error(20);     /* º¯ÊıÃûºóÉÙÁË"}" */
+            error(20);     /* å‡½æ•°ååå°‘äº†"}" */
         }
     }
     memcpy(nxtlev, statbegsys, sizeof(bool) * symnum);
     test(nxtlev, declbegsys, 7);
 
-    code[table[tx0].adr].a = cx;        /* °ÑÇ°ÃæÉú³ÉµÄÌø×ªÓï¾äµÄÌø×ªÎ»ÖÃ¸Ä³Éµ±Ç°Î»ÖÃ */
-    table[tx0].adr = cx;                /* ¼ÇÂ¼µ±Ç°¹ı³Ì´úÂëµØÖ· */
-    table[tx0].size = dx;               /* ÉùÃ÷²¿·ÖÖĞÃ¿Ôö¼ÓÒ»ÌõÉùÃ÷¶¼»á¸ødxÔö¼Ó1£¬ÉùÃ÷²¿·ÖÒÑ¾­½áÊø£¬dx¾ÍÊÇµ±Ç°¹ı³ÌÊı¾İµÄsize */
+    code[table[tx0].adr].a = cx;        /* æŠŠå‰é¢ç”Ÿæˆçš„è·³è½¬è¯­å¥çš„è·³è½¬ä½ç½®æ”¹æˆå½“å‰ä½ç½® */
+    table[tx0].adr = cx;                /* è®°å½•å½“å‰è¿‡ç¨‹ä»£ç åœ°å€ */
+    table[tx0].size = dx;               /* å£°æ˜éƒ¨åˆ†ä¸­æ¯å¢åŠ ä¸€æ¡å£°æ˜éƒ½ä¼šç»™dxå¢åŠ 1ï¼Œå£°æ˜éƒ¨åˆ†å·²ç»ç»“æŸï¼Œdxå°±æ˜¯å½“å‰è¿‡ç¨‹æ•°æ®çš„size */
 
     cx0 = cx;
-    gen(ini, 0, dx);                    /* Éú³ÉÖ¸Áî£¬´ËÖ¸ÁîÖ´ĞĞÊ±ÔÚÊı¾İÕ»ÖĞÎª±»µ÷ÓÃµÄ¹ı³Ì¿ª±Ùdx¸öµ¥ÔªµÄÊı¾İÇø */
+    gen(ini, 0, dx);                    /* ç”ŸæˆæŒ‡ä»¤ï¼Œæ­¤æŒ‡ä»¤æ‰§è¡Œæ—¶åœ¨æ•°æ®æ ˆä¸­ä¸ºè¢«è°ƒç”¨çš„è¿‡ç¨‹å¼€è¾Ÿdxä¸ªå•å…ƒçš„æ•°æ®åŒº */
 
-    if(tableswitch)                     /* Êä³ö·ûºÅ±í */
+    if(tableswitch)                     /* è¾“å‡ºç¬¦å·è¡¨ */
     {
         for (i = 1; i <= tx; i++)
         {
@@ -1181,7 +1180,7 @@ void program(int tx, bool* fsys, int lev)
         fprintf(ftable, "\n");
     }
 
-    memcpy(nxtlev, fsys, sizeof(bool) * symnum);  /* Ã¿¸öºó¼Ì·ûºÅ¼¯ºÏ¶¼°üº¬ÉÏ²ãºó¼Ì·ûºÅ¼¯ºÏ£¬ÒÔ±ã²¹¾È */
+    memcpy(nxtlev, fsys, sizeof(bool) * symnum);  /* æ¯ä¸ªåç»§ç¬¦å·é›†åˆéƒ½åŒ…å«ä¸Šå±‚åç»§ç¬¦å·é›†åˆï¼Œä»¥ä¾¿è¡¥æ•‘ */
 
     current[0] = 0;
     statement_list(&tx, nxtlev, lev);
@@ -1191,7 +1190,7 @@ void program(int tx, bool* fsys, int lev)
         code[exit_cx[--exit_n]].a = cx;
     }
 
-    gen(opr, 0, 0);                               /* Ã¿¸ö¹ı³Ì³ö¿Ú¶¼ÒªÊ¹ÓÃµÄÊÍ·ÅÊı¾İ¶ÎÖ¸Áî */
+    gen(opr, 0, 0);                               /* æ¯ä¸ªè¿‡ç¨‹å‡ºå£éƒ½è¦ä½¿ç”¨çš„é‡Šæ”¾æ•°æ®æ®µæŒ‡ä»¤ */
 
     for(i = 0; i < 10; i++)
     {
@@ -1204,35 +1203,35 @@ void program(int tx, bool* fsys, int lev)
 
     if (!feof(fin))
     {
-        memset(nxtlev, 0, sizeof(bool) * symnum); /* ·Ö³ÌĞòÃ»ÓĞ²¹¾È¼¯ºÏ */
-        test(fsys, nxtlev, 8);                    /* ¼ì²âºó¼Ì·ûºÅÕıÈ·ĞÔ */
+        memset(nxtlev, 0, sizeof(bool) * symnum); /* åˆ†ç¨‹åºæ²¡æœ‰è¡¥æ•‘é›†åˆ */
+        test(fsys, nxtlev, 8);                    /* æ£€æµ‹åç»§ç¬¦å·æ­£ç¡®æ€§ */
     }
 
-    listcode(cx0);                                /* Êä³ö±¾·Ö³ÌĞòÉú³ÉµÄ´úÂë */
+    listcode(cx0);                                /* è¾“å‡ºæœ¬åˆ†ç¨‹åºç”Ÿæˆçš„ä»£ç  */
 }
 
 
 /*
- * ÔÚ·ûºÅ±íÖĞ¼ÓÈëÒ»Ïî
+ * åœ¨ç¬¦å·è¡¨ä¸­åŠ å…¥ä¸€é¡¹
  *
- * k:      ±êÊ¶·ûµÄÖÖÀà
- * ptx:    ·ûºÅ±íÎ²Ö¸ÕëµÄÖ¸Õë£¬ÎªÁË¿ÉÒÔ¸Ä±ä·ûºÅ±íÎ²Ö¸ÕëµÄÖµ
- * pdx:    dxÎªµ±Ç°Ó¦·ÖÅäµÄ±äÁ¿µÄÏà¶ÔµØÖ·£¬·ÖÅäºóÒªÔö¼Ó1
- * lev:    ±êÊ¶·ûËùÔÚµÄ²ã´Î
+ * k:      æ ‡è¯†ç¬¦çš„ç§ç±»
+ * ptx:    ç¬¦å·è¡¨å°¾æŒ‡é’ˆçš„æŒ‡é’ˆï¼Œä¸ºäº†å¯ä»¥æ”¹å˜ç¬¦å·è¡¨å°¾æŒ‡é’ˆçš„å€¼
+ * pdx:    dxä¸ºå½“å‰åº”åˆ†é…çš„å˜é‡çš„ç›¸å¯¹åœ°å€ï¼Œåˆ†é…åè¦å¢åŠ 1
+ * lev:    æ ‡è¯†ç¬¦æ‰€åœ¨çš„å±‚æ¬¡
  */
 void enter(enum object k, int* ptx, int* pdx, int lev)
 {
     (*ptx)++;
-    strcpy(table[(*ptx)].name, id);     /* ·ûºÅ±íµÄnameÓò¼ÇÂ¼±êÊ¶·ûµÄÃû×Ö */
+    strcpy(table[(*ptx)].name, id);     /* ç¬¦å·è¡¨çš„nameåŸŸè®°å½•æ ‡è¯†ç¬¦çš„åå­— */
     table[(*ptx)].kind = k;
     switch (k)
     {
-        case variable:                  /* ±äÁ¿ */
+        case variable:                  /* å˜é‡ */
             table[(*ptx)].level = lev;
             table[(*ptx)].adr = (*pdx);
             (*pdx)++;
             break;
-        case function:                  /* º¯Êı */
+        case function:                  /* å‡½æ•° */
             table[(*ptx)].level = lev;
             break;
         case boolean:
@@ -1243,10 +1242,10 @@ void enter(enum object k, int* ptx, int* pdx, int lev)
         case constant:
             if (num > amax)
             {
-                error(30);              /* ³£ÊıÔ½½ç */
+                error(30);              /* å¸¸æ•°è¶Šç•Œ */
                 num = 0;
             }
-            table[(*ptx)].val = num;    /* µÇ¼Ç³£ÊıµÄÖµ */
+            table[(*ptx)].val = num;    /* ç™»è®°å¸¸æ•°çš„å€¼ */
             break;
         case floatnum:
             table[(*ptx)].level = lev;
@@ -1258,11 +1257,11 @@ void enter(enum object k, int* ptx, int* pdx, int lev)
 
 
 /*
- * ²éÕÒ±êÊ¶·ûÔÚ·ûºÅ±íÖĞµÄÎ»ÖÃ£¬´Ótx¿ªÊ¼µ¹Ğò²éÕÒ±êÊ¶·û
- * ÕÒµ½Ôò·µ»ØÔÚ·ûºÅ±íÖĞµÄÎ»ÖÃ£¬·ñÔò·µ»Ø0
+ * æŸ¥æ‰¾æ ‡è¯†ç¬¦åœ¨ç¬¦å·è¡¨ä¸­çš„ä½ç½®ï¼Œä»txå¼€å§‹å€’åºæŸ¥æ‰¾æ ‡è¯†ç¬¦
+ * æ‰¾åˆ°åˆ™è¿”å›åœ¨ç¬¦å·è¡¨ä¸­çš„ä½ç½®ï¼Œå¦åˆ™è¿”å›0
  *
- * id:    Òª²éÕÒµÄÃû×Ö
- * tx:    µ±Ç°·ûºÅ±íÎ²Ö¸Õë
+ * id:    è¦æŸ¥æ‰¾çš„åå­—
+ * tx:    å½“å‰ç¬¦å·è¡¨å°¾æŒ‡é’ˆ
  */
 int position(char* id, int tx)
 {
@@ -1285,13 +1284,13 @@ int position(char* id, int tx)
 }
 
 
-/* ±äÁ¿ÉùÃ÷´¦Àí */
+/* å˜é‡å£°æ˜å¤„ç† */
 void var_declaration_list(int* ptx, int* pdx, int lev)
 {
     bool nxtlev[symnum];
     memcpy(nxtlev, declbegsys, sizeof(bool) * symnum);
     nxtlev[funcsym] = false;
-    while (inset(sym, nxtlev))              /* Óöµ½±äÁ¿ÉùÃ÷·ûºÅ£¬¿ªÊ¼´¦Àí±äÁ¿ÉùÃ÷ */
+    while (inset(sym, nxtlev))              /* é‡åˆ°å˜é‡å£°æ˜ç¬¦å·ï¼Œå¼€å§‹å¤„ç†å˜é‡å£°æ˜ */
     {
         enum object type;
         if(sym == varsym)
@@ -1315,7 +1314,7 @@ void var_declaration_list(int* ptx, int* pdx, int lev)
         {
             getsym();
             if (sym != lbrack)
-                enter(type, ptx, pdx, lev); /* ÌîĞ´·ûºÅ±í */
+                enter(type, ptx, pdx, lev); /* å¡«å†™ç¬¦å·è¡¨ */
         }
         else if(sym == ident && type == constant)
         {
@@ -1324,7 +1323,7 @@ void var_declaration_list(int* ptx, int* pdx, int lev)
             {
                 if (sym == eql)
                 {
-                    error(1);           /* °Ñ=Ğ´³ÉÁË== */
+                    error(1);           /* æŠŠ=å†™æˆäº†== */
                 }
                 getsym();
                 if (sym == number)
@@ -1334,20 +1333,20 @@ void var_declaration_list(int* ptx, int* pdx, int lev)
                 }
                 else
                 {
-                    error(2);           /* ³£Á¿ÉùÃ÷ÖĞµÄ=ºóÓ¦ÊÇÊı×Ö */
+                    error(2);           /* å¸¸é‡å£°æ˜ä¸­çš„=ååº”æ˜¯æ•°å­— */
                 }
             }
             else
             {
-                error(3);               /* ³£Á¿ÉùÃ÷ÖĞµÄ±êÊ¶·ûºóÓ¦ÊÇ= */
+                error(3);               /* å¸¸é‡å£°æ˜ä¸­çš„æ ‡è¯†ç¬¦ååº”æ˜¯= */
             }
         }
         else
         {
-            error(42);                 /* varºóÃæÓ¦ÊÇ±êÊ¶·û */
+            error(42);                 /* varåé¢åº”æ˜¯æ ‡è¯†ç¬¦ */
         }
 
-        /* ÊÇ·ñÊÇÊı×é */
+        /* æ˜¯å¦æ˜¯æ•°ç»„ */
         if (sym == lbrack)
         {
             getsym();
@@ -1379,13 +1378,13 @@ void var_declaration_list(int* ptx, int* pdx, int lev)
         }
         else
         {
-            error(5);                 /* Â©µôÁË·ÖºÅ */
+            error(5);                 /* æ¼æ‰äº†åˆ†å· */
         }
     }
 }
 
 
-/* Êä³öÄ¿±ê´úÂëÇåµ¥ */
+/* è¾“å‡ºç›®æ ‡ä»£ç æ¸…å• */
 void listcode(int cx0)
 {
     int i;
@@ -1399,7 +1398,7 @@ void listcode(int cx0)
     }
 }
 
-/* Êä³öËùÓĞÄ¿±ê´úÂë²¢Ğ´ÈëfcodeÎÄ¼ş */
+/* è¾“å‡ºæ‰€æœ‰ç›®æ ‡ä»£ç å¹¶å†™å…¥fcodeæ–‡ä»¶ */
 void listall()
 {
     int i;
@@ -1413,19 +1412,19 @@ void listall()
     }
 }
 
-/* Óï¾ä´¦Àí */
+/* è¯­å¥å¤„ç† */
 void statement_list(int* ptx, bool* fsys, int lev)
 {
     int i, cx1, cx2;
     bool nxtlev[symnum];
-    while (inset(sym, statbegsys)||( (sym == continuesym || sym == breaksym ) && isjmp[circlenum] == true ) )  /* Óöµ½±äÁ¿ÉùÃ÷·ûºÅ£¬¿ªÊ¼´¦Àí±äÁ¿ÉùÃ÷ */
+    while (inset(sym, statbegsys)||( (sym == continuesym || sym == breaksym ) && isjmp[circlenum] == true ) )  /* é‡åˆ°å˜é‡å£°æ˜ç¬¦å·ï¼Œå¼€å§‹å¤„ç†å˜é‡å£°æ˜ */
     {
         if (sym == ifsym)
         {
             getsym();
             memcpy(nxtlev, fsys, sizeof(bool) * symnum);
-            nxtlev[lbrace] = true;  /* ºó¼Ì·ûºÅÎª'{' */
-            condition(ptx, nxtlev, lev); /* µ÷ÓÃÌõ¼ş´¦Àí */
+            nxtlev[lbrace] = true;  /* åç»§ç¬¦å·ä¸º'{' */
+            condition(ptx, nxtlev, lev); /* è°ƒç”¨æ¡ä»¶å¤„ç† */
 
             if (sym == lbrace)
             {
@@ -1433,14 +1432,14 @@ void statement_list(int* ptx, bool* fsys, int lev)
             }
             else
             {
-                error(52);         /* ÒÉËÆÉÙÁË"{" */
+                error(52);         /* ç–‘ä¼¼å°‘äº†"{" */
             }
 
-            cx1 = cx;               /* ±£´æµ±Ç°Ö¸ÁîµØÖ· */
-            gen(jpc, 0, 0);         /* Éú³ÉÌõ¼şÌø×ªÖ¸Áî, Ìø×ªµØÖ·Î´Öª, ÔİĞ´×÷0 */
+            cx1 = cx;               /* ä¿å­˜å½“å‰æŒ‡ä»¤åœ°å€ */
+            gen(jpc, 0, 0);         /* ç”Ÿæˆæ¡ä»¶è·³è½¬æŒ‡ä»¤, è·³è½¬åœ°å€æœªçŸ¥, æš‚å†™ä½œ0 */
             if(sym != rbrace)
                 statement_list(ptx, nxtlev, lev);
-            code[cx1].a = cx;       /* ¾­statement´¦Àíºó, cxÎªthenºóÓï¾äÖ´ĞĞÍêµÄÎ»ÖÃ, ËüÕıÊÇÇ°ÃæÎ´¶¨µÄÌø×ªµØÖ·, ´ËÊ±½øĞĞ»ØÌî */
+            code[cx1].a = cx;       /* ç»statementå¤„ç†å, cxä¸ºthenåè¯­å¥æ‰§è¡Œå®Œçš„ä½ç½®, å®ƒæ­£æ˜¯å‰é¢æœªå®šçš„è·³è½¬åœ°å€, æ­¤æ—¶è¿›è¡Œå›å¡« */
 
             if (sym == rbrace)
             {
@@ -1448,7 +1447,7 @@ void statement_list(int* ptx, bool* fsys, int lev)
             }
             else
             {
-                error(53);          /* ÒÉËÆÈ±ÉÙ"}" */
+                error(53);          /* ç–‘ä¼¼ç¼ºå°‘"}" */
             }
 
             if(sym == elsesym)
@@ -1463,7 +1462,7 @@ void statement_list(int* ptx, bool* fsys, int lev)
                 }
                 else
                 {
-                    error(54);      /* ÒÉËÆÈ±ÉÙ"{" */
+                    error(54);      /* ç–‘ä¼¼ç¼ºå°‘"{" */
                 }
 
                 if(sym != rbrace)
@@ -1478,20 +1477,20 @@ void statement_list(int* ptx, bool* fsys, int lev)
                 }
                 else
                 {
-                    error(55);      /* ÒÉËÆÈ±ÉÙ"}" */
+                    error(55);      /* ç–‘ä¼¼ç¼ºå°‘"}" */
                 }
             }
         }
         else if (sym == whilesym)
         {
             circlenum++;
-            cx1 = cx;               /* ±£´æÅĞ¶ÏÌõ¼ş²Ù×÷µÄÎ»ÖÃ */
+            cx1 = cx;               /* ä¿å­˜åˆ¤æ–­æ¡ä»¶æ“ä½œçš„ä½ç½® */
             getsym();
             memcpy(nxtlev, fsys, sizeof(bool) * symnum);
-            nxtlev[lbrace] = true;  /* ºó¼Ì·ûºÅÎª'{' */
-            condition(ptx, nxtlev, lev); /* µ÷ÓÃÌõ¼ş´¦Àí */
-            cx2 = cx;               /* ±£´æÑ­»·ÌåµÄ½áÊøµÄÏÂÒ»¸öÎ»ÖÃ */
-            gen(jpc, 0, 0);         /* Éú³ÉÌõ¼şÌø×ª£¬µ«Ìø³öÑ­»·µÄµØÖ·Î´Öª£¬±ê¼ÇÎª0µÈ´ı»ØÌî */
+            nxtlev[lbrace] = true;  /* åç»§ç¬¦å·ä¸º'{' */
+            condition(ptx, nxtlev, lev); /* è°ƒç”¨æ¡ä»¶å¤„ç† */
+            cx2 = cx;               /* ä¿å­˜å¾ªç¯ä½“çš„ç»“æŸçš„ä¸‹ä¸€ä¸ªä½ç½® */
+            gen(jpc, 0, 0);         /* ç”Ÿæˆæ¡ä»¶è·³è½¬ï¼Œä½†è·³å‡ºå¾ªç¯çš„åœ°å€æœªçŸ¥ï¼Œæ ‡è®°ä¸º0ç­‰å¾…å›å¡« */
 
             if (sym == lbrace)
             {
@@ -1499,7 +1498,7 @@ void statement_list(int* ptx, bool* fsys, int lev)
             }
             else
             {
-                error(56);          /* ÒÉËÆÉÙÁË"{" */
+                error(56);          /* ç–‘ä¼¼å°‘äº†"{" */
             }
 
             fsys[continuesym] = true;
@@ -1515,7 +1514,7 @@ void statement_list(int* ptx, bool* fsys, int lev)
             }
             else
             {
-                error(57);         /* ÒÉËÆÈ±ÉÙ"}" */
+                error(57);         /* ç–‘ä¼¼ç¼ºå°‘"}" */
             }
 
             gen(jmp, 0, cx1);
@@ -1537,14 +1536,14 @@ void statement_list(int* ptx, bool* fsys, int lev)
 
             if (sym != lparen)
             {
-                error(34);          /* ¸ñÊ½´íÎó£¬Ó¦ÊÇ×óÀ¨ºÅ */
+                error(34);          /* æ ¼å¼é”™è¯¯ï¼Œåº”æ˜¯å·¦æ‹¬å· */
             }
             else
             {
                 getsym();
                 if (sym == ident)
                 {
-                    i = position(id, *ptx); /* ²éÕÒÒª¶ÁµÄ±äÁ¿ */
+                    i = position(id, *ptx); /* æŸ¥æ‰¾è¦è¯»çš„å˜é‡ */
                 }
                 else
                 {
@@ -1553,13 +1552,13 @@ void statement_list(int* ptx, bool* fsys, int lev)
 
                 if (i == 0)
                 {
-                    error(4);       /* readÓï¾äÀ¨ºÅÖĞµÄ±êÊ¶·ûÓ¦¸ÃÊÇÉùÃ÷¹ıµÄ±äÁ¿ */
+                    error(4);       /* readè¯­å¥æ‹¬å·ä¸­çš„æ ‡è¯†ç¬¦åº”è¯¥æ˜¯å£°æ˜è¿‡çš„å˜é‡ */
                 }
                 else
                 {
                     if(table[i].kind == variable)
                     {
-                        gen(opr, 0, 16);/* Éú³ÉÊäÈëÖ¸Áî, ¶ÁÈ¡Öµµ½Õ»¶¥ */
+                        gen(opr, 0, 16);/* ç”Ÿæˆè¾“å…¥æŒ‡ä»¤, è¯»å–å€¼åˆ°æ ˆé¡¶ */
                     }
                     else if(table[i].kind == floatnum)
                     {
@@ -1569,15 +1568,15 @@ void statement_list(int* ptx, bool* fsys, int lev)
                     {
                         gen(opr, 0, 25);
                     }
-                    gen(sto, lev-table[i].level, table[i].adr); /* ½«Õ»¶¥ÄÚÈİËÍÈë±äÁ¿µ¥ÔªÖĞ */
+                    gen(sto, lev-table[i].level, table[i].adr); /* å°†æ ˆé¡¶å†…å®¹é€å…¥å˜é‡å•å…ƒä¸­ */
                 }
 
                 getsym();
             }
             if(sym != rparen)
             {
-                error(33);          /* ¸ñÊ½´íÎó£¬Ó¦ÊÇÓÒÀ¨ºÅ */
-                while (!inset(sym, fsys))   /* ³ö´í²¹¾È£¬Ö±µ½Óöµ½ÉÏ²ãº¯ÊıµÄºó¼Ì·ûºÅ */
+                error(33);          /* æ ¼å¼é”™è¯¯ï¼Œåº”æ˜¯å³æ‹¬å· */
+                while (!inset(sym, fsys))   /* å‡ºé”™è¡¥æ•‘ï¼Œç›´åˆ°é‡åˆ°ä¸Šå±‚å‡½æ•°çš„åç»§ç¬¦å· */
                 {
                     getsym();
                 }
@@ -1592,7 +1591,7 @@ void statement_list(int* ptx, bool* fsys, int lev)
             getsym();
             if (sym != lparen)
             {
-                error(34);          /* ¸ñÊ½´íÎó£¬Ó¦ÊÇ×óÀ¨ºÅ */
+                error(34);          /* æ ¼å¼é”™è¯¯ï¼Œåº”æ˜¯å·¦æ‹¬å· */
             }
             else
             {
@@ -1601,7 +1600,7 @@ void statement_list(int* ptx, bool* fsys, int lev)
                 nxtlev[rparen] = true;
                 if (sym == ident)
                 {
-                    i = position(id, *ptx); /* ²éÕÒÒª¶ÁµÄ±äÁ¿ */
+                    i = position(id, *ptx); /* æŸ¥æ‰¾è¦è¯»çš„å˜é‡ */
                 }
                 else
                 {
@@ -1611,13 +1610,13 @@ void statement_list(int* ptx, bool* fsys, int lev)
 
                 if (i == 0)
                 {
-                    error(4);      /* printÓï¾äÀ¨ºÅÖĞµÄ±êÊ¶·ûÓ¦¸ÃÊÇÉùÃ÷¹ıµÄ±äÁ¿ */
+                    error(4);      /* printè¯­å¥æ‹¬å·ä¸­çš„æ ‡è¯†ç¬¦åº”è¯¥æ˜¯å£°æ˜è¿‡çš„å˜é‡ */
                 }
                 else
                 {
                     getsym();
 
-                    /* ÊÇ·ñÊÇÊı×é */
+                    /* æ˜¯å¦æ˜¯æ•°ç»„ */
                     if(sym == lbrack)
                     {
                         getsym();
@@ -1649,7 +1648,7 @@ void statement_list(int* ptx, bool* fsys, int lev)
 
                     if(table[i].kind == variable || table[i].kind == constant)
                     {
-                        gen(opr, 0, 14);    /* Éú³ÉÊä³öÖ¸Áî£¬Êä³öÕ»¶¥µÄÖµ */
+                        gen(opr, 0, 14);    /* ç”Ÿæˆè¾“å‡ºæŒ‡ä»¤ï¼Œè¾“å‡ºæ ˆé¡¶çš„å€¼ */
                     }
                     else if(table[i].kind == floatnum)
                     {
@@ -1659,14 +1658,14 @@ void statement_list(int* ptx, bool* fsys, int lev)
                     {
                         gen(opr, 0, 23);
                     }
-                    gen(opr, 0, 15);    /* Éú³É»»ĞĞÖ¸Áî */
+                    gen(opr, 0, 15);    /* ç”Ÿæˆæ¢è¡ŒæŒ‡ä»¤ */
                 }
 
             }
             if(sym != rparen)
             {
-                error(33);          /* ¸ñÊ½´íÎó£¬Ó¦ÊÇÓÒÀ¨ºÅ */
-                while (!inset(sym, fsys))   /* ³ö´í²¹¾È£¬Ö±µ½Óöµ½ÉÏ²ãº¯ÊıµÄºó¼Ì·ûºÅ */
+                error(33);          /* æ ¼å¼é”™è¯¯ï¼Œåº”æ˜¯å³æ‹¬å· */
+                while (!inset(sym, fsys))   /* å‡ºé”™è¡¥æ•‘ï¼Œç›´åˆ°é‡åˆ°ä¸Šå±‚å‡½æ•°çš„åç»§ç¬¦å· */
                 {
                     getsym();
                 }
@@ -1678,25 +1677,25 @@ void statement_list(int* ptx, bool* fsys, int lev)
         }
         else if (sym == ident)
         {
-            i = position(id, *ptx); /* ²éÕÒ±êÊ¶·ûÔÚ·ûºÅ±íÖĞµÄÎ»ÖÃ */
+            i = position(id, *ptx); /* æŸ¥æ‰¾æ ‡è¯†ç¬¦åœ¨ç¬¦å·è¡¨ä¸­çš„ä½ç½® */
 
             if (i == 0)
             {
                 printf("%d\n", sym);
-                error(4);           /* ±êÊ¶·ûÎ´ÉùÃ÷ */
+                error(4);           /* æ ‡è¯†ç¬¦æœªå£°æ˜ */
             }
             else
             {
                 if( (table[i].kind != variable && table[i].kind != boolean && table[i].kind != floatnum )|| table[i].kind == constant)
                 {
-                    error(12);      /* ¸³ÖµÓï¾äÖĞ£¬¸³ÖµºÅ×ó²¿±êÊ¶·ûÓ¦¸ÃÊÇ±äÁ¿ */
+                    error(12);      /* èµ‹å€¼è¯­å¥ä¸­ï¼Œèµ‹å€¼å·å·¦éƒ¨æ ‡è¯†ç¬¦åº”è¯¥æ˜¯å˜é‡ */
                     i = 0;
                 }
                 else
                 {
                     getsym();
 
-                    /* ÊÇ·ñÊÇÊı×é */
+                    /* æ˜¯å¦æ˜¯æ•°ç»„ */
                     if(sym == lbrack)
                     {
                         getsym();
@@ -1723,7 +1722,7 @@ void statement_list(int* ptx, bool* fsys, int lev)
                     {
                         if (sym == eql)
                         {
-                            error(1);           /* °Ñ=Ğ´³ÉÁË== */
+                            error(1);           /* æŠŠ=å†™æˆäº†== */
                         }
                         getsym();
 
@@ -1748,7 +1747,7 @@ void statement_list(int* ptx, bool* fsys, int lev)
                                 getsym();
                                 if (sym != lparen)
                                 {
-                                    error(17);           /* ¸ñÊ½´íÎó£¬Ó¦ÊÇ×óÀ¨ºÅ */
+                                    error(17);           /* æ ¼å¼é”™è¯¯ï¼Œåº”æ˜¯å·¦æ‹¬å· */
                                 }
                                 else
                                 {
@@ -1772,7 +1771,7 @@ void statement_list(int* ptx, bool* fsys, int lev)
 
                                     if(tn != table[ii].para_n)
                                     {
-                                        error(45);     /* µ÷ÓÃº¯Êı²ÎÊı¸öÊı²»¶Ô */
+                                        error(45);     /* è°ƒç”¨å‡½æ•°å‚æ•°ä¸ªæ•°ä¸å¯¹ */
                                     }
 
                                     gen(opr, tn, 28);
@@ -1783,7 +1782,7 @@ void statement_list(int* ptx, bool* fsys, int lev)
 
                                 if (table[ii].kind == function)
                                 {
-                                    gen(cal, lev-table[ii].level, table[ii].adr); /* Éú³ÉcallÖ¸Áî */
+                                    gen(cal, lev-table[ii].level, table[ii].adr); /* ç”ŸæˆcallæŒ‡ä»¤ */
                                     if(table[ii].isreturn == true)
                                     {
                                         gen(opr, table[ii].size, 31);
@@ -1791,12 +1790,12 @@ void statement_list(int* ptx, bool* fsys, int lev)
                                 }
                                 else
                                 {
-                                    error(15);          /* ±êÊ¶·ûÀàĞÍÓ¦Îªº¯Êı */
+                                    error(15);          /* æ ‡è¯†ç¬¦ç±»å‹åº”ä¸ºå‡½æ•° */
                                 }
 
                                 if(sym != rparen)
                                 {
-                                    error(18);          /* ¸ñÊ½´íÎó£¬Ó¦ÊÇÓÒÀ¨ºÅ */
+                                    error(18);          /* æ ¼å¼é”™è¯¯ï¼Œåº”æ˜¯å³æ‹¬å· */
                                 }
                                 else
                                 {
@@ -1805,11 +1804,11 @@ void statement_list(int* ptx, bool* fsys, int lev)
                             }
                         }
                         else
-                            expression(ptx, nxtlev, lev);   /* ´¦Àí¸³Öµ·ûºÅÓÒ²à±í´ïÊ½ */
+                            expression(ptx, nxtlev, lev);   /* å¤„ç†èµ‹å€¼ç¬¦å·å³ä¾§è¡¨è¾¾å¼ */
 
                         if(i != 0)
                         {
-                            /* expression½«Ö´ĞĞÒ»ÏµÁĞÖ¸Áî£¬µ«×îÖÕ½á¹û½«»á±£´æÔÚÕ»¶¥£¬Ö´ĞĞstoÃüÁîÍê³É¸³Öµ */
+                            /* expressionå°†æ‰§è¡Œä¸€ç³»åˆ—æŒ‡ä»¤ï¼Œä½†æœ€ç»ˆç»“æœå°†ä¼šä¿å­˜åœ¨æ ˆé¡¶ï¼Œæ‰§è¡Œstoå‘½ä»¤å®Œæˆèµ‹å€¼ */
                             gen(sto, lev-table[i].level, table[i].adr);
                         }
                     }
@@ -1837,7 +1836,7 @@ void statement_list(int* ptx, bool* fsys, int lev)
                     }
                     else
                     {
-                        error(13);                  /* Ã»ÓĞ¼ì²âµ½¸³Öµ·ûºÅ */
+                        error(13);                  /* æ²¡æœ‰æ£€æµ‹åˆ°èµ‹å€¼ç¬¦å· */
                     }
                 }
             }
@@ -1853,18 +1852,18 @@ void statement_list(int* ptx, bool* fsys, int lev)
             {
                 error(10);
             }
-            if(sym == ident)            /* Òò×ÓÎª±äÁ¿ */
+            if(sym == ident)            /* å› å­ä¸ºå˜é‡ */
             {
-                i = position(id, *ptx); /* ²éÕÒ±êÊ¶·ûÔÚ·ûºÅ±íÖĞµÄÎ»ÖÃ */
+                i = position(id, *ptx); /* æŸ¥æ‰¾æ ‡è¯†ç¬¦åœ¨ç¬¦å·è¡¨ä¸­çš„ä½ç½® */
                 if (i == 0)
                 {
-                    error(4);           /* ±êÊ¶·ûÎ´ÉùÃ÷ */
+                    error(4);           /* æ ‡è¯†ç¬¦æœªå£°æ˜ */
                 }
                 else
                 {
                     switch (table[i].kind)
                     {
-                        case constant:  /* ±êÊ¶·ûÎª³£Á¿ */
+                        case constant:  /* æ ‡è¯†ç¬¦ä¸ºå¸¸é‡ */
                             error(21);
                             getsym();
                             break;
@@ -1873,16 +1872,16 @@ void statement_list(int* ptx, bool* fsys, int lev)
                             getsym();
                             break;
                         case floatnum:
-                            gen(lod, lev-table[i].level, table[i].adr); /* ÕÒµ½±äÁ¿µØÖ·²¢½«ÆäÖµÈëÕ» */
+                            gen(lod, lev-table[i].level, table[i].adr); /* æ‰¾åˆ°å˜é‡åœ°å€å¹¶å°†å…¶å€¼å…¥æ ˆ */
                             gen(opr, 0, 20);//20 is to int
                             table[i].kind = variable;
                             getsym();
                             break;
-                        case variable:  /* ±êÊ¶·ûÎª±äÁ¿ */
+                        case variable:  /* æ ‡è¯†ç¬¦ä¸ºå˜é‡ */
                             error(21);
                             getsym();
                             break;
-                        case function:  /* ±êÊ¶·ûÎª¹ı³Ì */
+                        case function:  /* æ ‡è¯†ç¬¦ä¸ºè¿‡ç¨‹ */
                             error(21);
                             getsym();
                             break;
@@ -1909,18 +1908,18 @@ void statement_list(int* ptx, bool* fsys, int lev)
             {
                 error(10);
             }
-            if(sym == ident)            /* Òò×ÓÎª±äÁ¿ */
+            if(sym == ident)            /* å› å­ä¸ºå˜é‡ */
             {
-                i = position(id, *ptx); /* ²éÕÒ±êÊ¶·ûÔÚ·ûºÅ±íÖĞµÄÎ»ÖÃ */
+                i = position(id, *ptx); /* æŸ¥æ‰¾æ ‡è¯†ç¬¦åœ¨ç¬¦å·è¡¨ä¸­çš„ä½ç½® */
                 if (i == 0)
                 {
-                    error(4);           /* ±êÊ¶·ûÎ´ÉùÃ÷ */
+                    error(4);           /* æ ‡è¯†ç¬¦æœªå£°æ˜ */
                 }
                 else
                 {
                     switch (table[i].kind)
                     {
-                        case constant:  /* ±êÊ¶·ûÎª³£Á¿ */
+                        case constant:  /* æ ‡è¯†ç¬¦ä¸ºå¸¸é‡ */
                             error(22);
                             getsym();
                             break;
@@ -1932,14 +1931,14 @@ void statement_list(int* ptx, bool* fsys, int lev)
                             error(22);
                             getsym();
                             break;
-                        case variable:  /* ±êÊ¶·ûÎª±äÁ¿ */
-                            gen(lod, lev-table[i].level, table[i].adr); /* ÕÒµ½±äÁ¿µØÖ·²¢½«ÆäÖµÈëÕ» */
+                        case variable:  /* æ ‡è¯†ç¬¦ä¸ºå˜é‡ */
+                            gen(lod, lev-table[i].level, table[i].adr); /* æ‰¾åˆ°å˜é‡åœ°å€å¹¶å°†å…¶å€¼å…¥æ ˆ */
                             gen(opr, 0, 21);//21 is to float
                             table[i].kind = floatnum;
                             getsym();
                             break;
-                        case function:  /* ±êÊ¶·ûÎª¹ı³Ì */
-                            error(22);  /* ²»ÄÜÎª¹ı³Ì */
+                        case function:  /* æ ‡è¯†ç¬¦ä¸ºè¿‡ç¨‹ */
+                            error(22);  /* ä¸èƒ½ä¸ºè¿‡ç¨‹ */
                             getsym();
                             break;
                     }
@@ -1960,10 +1959,10 @@ void statement_list(int* ptx, bool* fsys, int lev)
             isfor = true;
             getsym();
 
-            int center = 0;             /* forÓëinÖ®¼äµÄ±êÊ¶·ûÎ»ÖÃ±ê¼Ç */
+            int center = 0;             /* forä¸inä¹‹é—´çš„æ ‡è¯†ç¬¦ä½ç½®æ ‡è®° */
             if (sym == ident)
             {
-                i = position(id, *ptx); /* ²éÕÒÒª¶ÁµÄ±äÁ¿ */
+                i = position(id, *ptx); /* æŸ¥æ‰¾è¦è¯»çš„å˜é‡ */
                 center = i;
             }
             else
@@ -1984,22 +1983,22 @@ void statement_list(int* ptx, bool* fsys, int lev)
             }
             else
             {
-                error(49);             /* È±ÉÙ"in" */
+                error(49);             /* ç¼ºå°‘"in" */
             }
 
             if (sym == ident)
             {
                 i = 0;
-                i = position(id, *ptx); /* ²éÕÒ±êÊ¶·ûÔÚ·ûºÅ±íÖĞµÄÎ»ÖÃ */
+                i = position(id, *ptx); /* æŸ¥æ‰¾æ ‡è¯†ç¬¦åœ¨ç¬¦å·è¡¨ä¸­çš„ä½ç½® */
                 if (i == 0)
                 {
-                    error(4);           /* ±êÊ¶·ûÎ´ÉùÃ÷ */
+                    error(4);           /* æ ‡è¯†ç¬¦æœªå£°æ˜ */
                 }
                 else
                 {
                     if(table[i].kind != variable && table[i].kind != constant)
                     {
-                        error(46);      /* for-inÓï¾äÖĞ£¬Ê¡ÂÔºÅ×ó²¿±êÊ¶·ûÓ¦¸ÃÊÇÕûĞÍ±äÁ¿ */
+                        error(46);      /* for-inè¯­å¥ä¸­ï¼Œçœç•¥å·å·¦éƒ¨æ ‡è¯†ç¬¦åº”è¯¥æ˜¯æ•´å‹å˜é‡ */
                         i = 0;
                     }
                     else
@@ -2009,10 +2008,10 @@ void statement_list(int* ptx, bool* fsys, int lev)
                             memcpy(nxtlev, fsys, sizeof(bool) * symnum);
                             nxtlev[threepoints] = true;
                             expression(ptx, nxtlev, lev);
-                            /* expression½«Ö´ĞĞÒ»ÏµÁĞÖ¸Áî£¬µ«×îÖÕ½á¹û½«»á±£´æÔÚÕ»¶¥£¬Ö´ĞĞstoÃüÁîÍê³É¸³Öµ */
+                            /* expressionå°†æ‰§è¡Œä¸€ç³»åˆ—æŒ‡ä»¤ï¼Œä½†æœ€ç»ˆç»“æœå°†ä¼šä¿å­˜åœ¨æ ˆé¡¶ï¼Œæ‰§è¡Œstoå‘½ä»¤å®Œæˆèµ‹å€¼ */
                             gen(sto, lev-table[center].level, table[center].adr);
                         }
-                        // getsym(); É¾µôÕâÒ»ĞĞÊÇÒòÎªexpressionÀïÃæÒÑ¾­ÓĞgetsym()ÁË:P
+                        // getsym(); åˆ æ‰è¿™ä¸€è¡Œæ˜¯å› ä¸ºexpressioné‡Œé¢å·²ç»æœ‰getsym()äº†:P
                     }
                 }
             }
@@ -2020,17 +2019,17 @@ void statement_list(int* ptx, bool* fsys, int lev)
             {
                 memcpy(nxtlev, fsys, sizeof(bool) * symnum);
                 nxtlev[threepoints] = true;
-                expression(ptx, nxtlev, lev);   /* ´¦Àí¸³Öµ·ûºÅÓÒ²à±í´ïÊ½ */
+                expression(ptx, nxtlev, lev);   /* å¤„ç†èµ‹å€¼ç¬¦å·å³ä¾§è¡¨è¾¾å¼ */
                 if(center != 0)
                 {
-                    /* expression½«Ö´ĞĞÒ»ÏµÁĞÖ¸Áî£¬µ«×îÖÕ½á¹û½«»á±£´æÔÚÕ»¶¥£¬Ö´ĞĞstoÃüÁîÍê³É¸³Öµ */
+                    /* expressionå°†æ‰§è¡Œä¸€ç³»åˆ—æŒ‡ä»¤ï¼Œä½†æœ€ç»ˆç»“æœå°†ä¼šä¿å­˜åœ¨æ ˆé¡¶ï¼Œæ‰§è¡Œstoå‘½ä»¤å®Œæˆèµ‹å€¼ */
                     gen(sto, lev-table[center].level, table[center].adr);
                 }
-                // getsym(); //É¾µôÕâÒ»ĞĞÊÇÒòÎªexpressionÀïÃæÒÑ¾­ÓĞgetsym()ÁË:P
+                // getsym(); //åˆ æ‰è¿™ä¸€è¡Œæ˜¯å› ä¸ºexpressioné‡Œé¢å·²ç»æœ‰getsym()äº†:P
             }
             else
             {
-                error(46);         /* "in"ºóËù½ÓÊı×Ö/±äÁ¿ÓĞÎÊÌâ */
+                error(46);         /* "in"åæ‰€æ¥æ•°å­—/å˜é‡æœ‰é—®é¢˜ */
             }
 
             if (sym == threepoints)
@@ -2039,7 +2038,7 @@ void statement_list(int* ptx, bool* fsys, int lev)
             }
             else
             {
-                error(48);         /* È±ÉÙ"..." */
+                error(48);         /* ç¼ºå°‘"..." */
             }
 
             if (sym == ident)
@@ -2047,16 +2046,16 @@ void statement_list(int* ptx, bool* fsys, int lev)
                 cx1 = cx;
 
                 i = 0;
-                i = position(id, *ptx); /* ²éÕÒ±êÊ¶·ûÔÚ·ûºÅ±íÖĞµÄÎ»ÖÃ */
+                i = position(id, *ptx); /* æŸ¥æ‰¾æ ‡è¯†ç¬¦åœ¨ç¬¦å·è¡¨ä¸­çš„ä½ç½® */
                 if (i == 0)
                 {
-                    error(4);           /* ±êÊ¶·ûÎ´ÉùÃ÷ */
+                    error(4);           /* æ ‡è¯†ç¬¦æœªå£°æ˜ */
                 }
                 else
                 {
                     if (table[i].kind != variable && table[i].kind != constant)
                     {
-                        error(47);      /* for-inÓï¾äÖĞ£¬Ê¡ÂÔºÅÓÒ²¿±êÊ¶·ûÓ¦¸ÃÊÇ±äÁ¿ */
+                        error(47);      /* for-inè¯­å¥ä¸­ï¼Œçœç•¥å·å³éƒ¨æ ‡è¯†ç¬¦åº”è¯¥æ˜¯å˜é‡ */
                         i = 0;
                     }
                     else
@@ -2069,10 +2068,10 @@ void statement_list(int* ptx, bool* fsys, int lev)
                             nxtlev[lbrace] = true;
                             expression(ptx, nxtlev, lev);
 
-                            /* expression½«Ö´ĞĞÒ»ÏµÁĞÖ¸Áî£¬µ«×îÖÕ½á¹û½«»á±£´æÔÚÕ»¶¥£¬Ö´ĞĞoprÃüÁîÍê³É<=µÄ±È½Ï */
+                            /* expressionå°†æ‰§è¡Œä¸€ç³»åˆ—æŒ‡ä»¤ï¼Œä½†æœ€ç»ˆç»“æœå°†ä¼šä¿å­˜åœ¨æ ˆé¡¶ï¼Œæ‰§è¡Œoprå‘½ä»¤å®Œæˆ<=çš„æ¯”è¾ƒ */
                             gen(opr, 0, 13);
                         }
-                        // getsym(); É¾µôÕâÒ»ĞĞÊÇÒòÎªexpressionÀïÃæÒÑ¾­ÓĞgetsym()ÁË:P
+                        // getsym(); åˆ æ‰è¿™ä¸€è¡Œæ˜¯å› ä¸ºexpressioné‡Œé¢å·²ç»æœ‰getsym()äº†:P
                     }
                 }
                 cx2 = cx;
@@ -2090,7 +2089,7 @@ void statement_list(int* ptx, bool* fsys, int lev)
                     gen(lod, lev-table[center].level, table[center].adr);
                     if (num > amax)
                     {
-                        error(30); /* ÊıÔ½½ç */
+                        error(30); /* æ•°è¶Šç•Œ */
                         num = 0;
                     }
                     gen(lit, 0, num);
@@ -2101,7 +2100,7 @@ void statement_list(int* ptx, bool* fsys, int lev)
             }
             else
             {
-                error(47);         /* "..."ºóËù½ÓÊı×Ö/±äÁ¿ÓĞÎÊÌâ */
+                error(47);         /* "..."åæ‰€æ¥æ•°å­—/å˜é‡æœ‰é—®é¢˜ */
             }
 
             if (sym == lbrace)
@@ -2110,7 +2109,7 @@ void statement_list(int* ptx, bool* fsys, int lev)
             }
             else
             {
-                error(50);         /* ÒÉËÆÉÙÁË"{" */
+                error(50);         /* ç–‘ä¼¼å°‘äº†"{" */
             }
 
             isfor = false;
@@ -2124,13 +2123,13 @@ void statement_list(int* ptx, bool* fsys, int lev)
                 code[continue_cx[circlenum][--continue_n[circlenum]]].a = cx;
             }
 
-            /* centerÖ¸ÏòµÄ±êÊ¶·ûµİÔöÒ» */
+            /* centeræŒ‡å‘çš„æ ‡è¯†ç¬¦é€’å¢ä¸€ */
             gen(lit, 0, 1);
             gen(lod, lev-table[center].level, table[center].adr);
             gen(opr, 0, 2);
             gen(sto, lev-table[center].level, table[center].adr);
 
-            gen(jmp, 0, cx1);       /* ·µ»ØÑ­»·Ìõ¼şÅĞ¶Ï */
+            gen(jmp, 0, cx1);       /* è¿”å›å¾ªç¯æ¡ä»¶åˆ¤æ–­ */
 
             code[cx2].a = cx;
 
@@ -2140,7 +2139,7 @@ void statement_list(int* ptx, bool* fsys, int lev)
             }
             else
             {
-                error(51);         /* ÒÉËÆÈ±ÉÙ"}" */
+                error(51);         /* ç–‘ä¼¼ç¼ºå°‘"}" */
             }
 
             while (break_n[circlenum] > 0)
@@ -2155,20 +2154,20 @@ void statement_list(int* ptx, bool* fsys, int lev)
 
             if (sym != ident)
             {
-                error(14);          /* callºóÓ¦Îª±êÊ¶·û */
+                error(14);          /* callååº”ä¸ºæ ‡è¯†ç¬¦ */
             }
             else
             {
                 i = position(id, *ptx);
                 if (i == 0)
                 {
-                    error(4);       /* º¯ÊıÃûÎ´ÕÒµ½ */
+                    error(4);       /* å‡½æ•°åæœªæ‰¾åˆ° */
                 }
                 getsym();
             }
             if (sym != lparen)
             {
-                error(34);          /* ¸ñÊ½´íÎó£¬Ó¦ÊÇ×óÀ¨ºÅ */
+                error(34);          /* æ ¼å¼é”™è¯¯ï¼Œåº”æ˜¯å·¦æ‹¬å· */
             }
             else
             {
@@ -2192,7 +2191,7 @@ void statement_list(int* ptx, bool* fsys, int lev)
 
                 if(tn != table[i].para_n)
                 {
-                    error(45);     /* µ÷ÓÃº¯Êı²ÎÊı¸öÊı²»¶Ô */
+                    error(45);     /* è°ƒç”¨å‡½æ•°å‚æ•°ä¸ªæ•°ä¸å¯¹ */
                 }
 
                 gen(opr, tn, 28);
@@ -2203,16 +2202,16 @@ void statement_list(int* ptx, bool* fsys, int lev)
 
             if (table[i].kind == function)
             {
-                gen(cal, lev-table[i].level, table[i].adr); /* Éú³ÉcallÖ¸Áî */
+                gen(cal, lev-table[i].level, table[i].adr); /* ç”ŸæˆcallæŒ‡ä»¤ */
             }
             else
             {
-                error(15);          /* callºó±êÊ¶·ûÀàĞÍÓ¦Îªº¯Êı */
+                error(15);          /* callåæ ‡è¯†ç¬¦ç±»å‹åº”ä¸ºå‡½æ•° */
             }
 
             if(sym != rparen)
             {
-                error(33);          /* ¸ñÊ½´íÎó£¬Ó¦ÊÇÓÒÀ¨ºÅ */
+                error(33);          /* æ ¼å¼é”™è¯¯ï¼Œåº”æ˜¯å³æ‹¬å· */
             }
             else
             {
@@ -2225,8 +2224,8 @@ void statement_list(int* ptx, bool* fsys, int lev)
             int case_n = 0;
             getsym();
             memcpy(nxtlev, fsys, sizeof(bool) * symnum);
-            nxtlev[lbrace] = true;           /* ºó¼Ì·ûºÅÎª'{' */
-            expression(ptx, nxtlev, lev);    /* µ÷ÓÃÌõ¼ş´¦Àí */
+            nxtlev[lbrace] = true;           /* åç»§ç¬¦å·ä¸º'{' */
+            expression(ptx, nxtlev, lev);    /* è°ƒç”¨æ¡ä»¶å¤„ç† */
 
             if(sym == lbrace)
             {
@@ -2238,12 +2237,12 @@ void statement_list(int* ptx, bool* fsys, int lev)
                     {
                         if (num > amax)
                         {
-                            error(30);      /* ÊıÔ½½ç */
+                            error(30);      /* æ•°è¶Šç•Œ */
                             num = 0;
                         }
                         gen(lit, 0, num);
                         gen(opr, 0, 18);
-                        cx1 = cx;           /* ±£´æµ±Ç°Ö¸ÁîµØÖ· */
+                        cx1 = cx;           /* ä¿å­˜å½“å‰æŒ‡ä»¤åœ°å€ */
                         gen(jpc, 0, 0);
                         getsym();
                     }
@@ -2344,7 +2343,7 @@ void statement_list(int* ptx, bool* fsys, int lev)
             }
             else
             {
-                error(56);          /* ÒÉËÆÉÙÁË"{" */
+                error(56);          /* ç–‘ä¼¼å°‘äº†"{" */
             }
 
             fsys[rbrace] = true;
@@ -2359,15 +2358,15 @@ void statement_list(int* ptx, bool* fsys, int lev)
             }
             else
             {
-                error(57);         /* ÒÉËÆÈ±ÉÙ"}" */
+                error(57);         /* ç–‘ä¼¼ç¼ºå°‘"}" */
             }
 
             if(sym == whilesym)
             {
                 getsym();
                 memcpy(nxtlev, fsys, sizeof(bool) * symnum);
-                nxtlev[semicolon] = true;  /* ºó¼Ì·ûºÅÎª'{' */
-                condition(ptx, nxtlev, lev); /* µ÷ÓÃÌõ¼ş´¦Àí */
+                nxtlev[semicolon] = true;  /* åç»§ç¬¦å·ä¸º'{' */
+                condition(ptx, nxtlev, lev); /* è°ƒç”¨æ¡ä»¶å¤„ç† */
                 cx2 = cx;
                 gen(jpc, 0, 0);
                 gen(jmp, 0, cx1);
@@ -2412,41 +2411,41 @@ void statement_list(int* ptx, bool* fsys, int lev)
         else
         {
             printf("%d\n", sym);
-            error(5);               /* Â©µôÁË·ÖºÅ */
+            error(5);               /* æ¼æ‰äº†åˆ†å· */
         }
     }
 }
 
 
-/* ±í´ïÊ½´¦Àí */
+/* è¡¨è¾¾å¼å¤„ç† */
 void expression(int* ptx, bool* fsys, int lev)
 {
-    enum symbol addop;              /* ÓÃÓÚ±£´æÕı¸ººÅ */
+    enum symbol addop;              /* ç”¨äºä¿å­˜æ­£è´Ÿå· */
     bool nxtlev[symnum];
 
-    if(sym == plus || sym == minus || sym == notsym) /* ±í´ïÊ½¿ªÍ·ÓĞÕı¸ººÅ£¬´ËÊ±µ±Ç°±í´ïÊ½±»¿´×÷Ò»¸öÕıµÄ»ò¸ºµÄÏî */
+    if(sym == plus || sym == minus || sym == notsym) /* è¡¨è¾¾å¼å¼€å¤´æœ‰æ­£è´Ÿå·ï¼Œæ­¤æ—¶å½“å‰è¡¨è¾¾å¼è¢«çœ‹ä½œä¸€ä¸ªæ­£çš„æˆ–è´Ÿçš„é¡¹ */
     {
-        addop = sym;                /* ±£´æ¿ªÍ·µÄÕı¸ººÅ */
+        addop = sym;                /* ä¿å­˜å¼€å¤´çš„æ­£è´Ÿå· */
         getsym();
         memcpy(nxtlev, fsys, sizeof(bool) * symnum);
         nxtlev[plus] = true;
         nxtlev[minus] = true;
-        term(ptx, nxtlev, lev);     /* ´¦ÀíÏî */
+        term(ptx, nxtlev, lev);     /* å¤„ç†é¡¹ */
         if (addop == minus)
         {
-            gen(opr, 0, 1);         /* Èç¹û¿ªÍ·Îª¸ººÅÉú³ÉÈ¡¸ºÖ¸Áî */
+            gen(opr, 0, 1);         /* å¦‚æœå¼€å¤´ä¸ºè´Ÿå·ç”Ÿæˆå–è´ŸæŒ‡ä»¤ */
         }
         if (addop == notsym)
         {
             gen(opr, 0, 26);
         }
     }
-    else                            /* ´ËÊ±±í´ïÊ½±»¿´×÷ÏîµÄ¼Ó¼õ */
+    else                            /* æ­¤æ—¶è¡¨è¾¾å¼è¢«çœ‹ä½œé¡¹çš„åŠ å‡ */
     {
         memcpy(nxtlev, fsys, sizeof(bool) * symnum);
         nxtlev[plus] = true;
         nxtlev[minus] = true;
-        term(ptx, nxtlev, lev);     /* ´¦ÀíÏî */
+        term(ptx, nxtlev, lev);     /* å¤„ç†é¡¹ */
     }
     while (sym == plus || sym == minus)
     {
@@ -2455,23 +2454,23 @@ void expression(int* ptx, bool* fsys, int lev)
         memcpy(nxtlev, fsys, sizeof(bool) * symnum);
         nxtlev[plus] = true;
         nxtlev[minus] = true;
-        term(ptx, nxtlev, lev);     /* ´¦ÀíÏî */
+        term(ptx, nxtlev, lev);     /* å¤„ç†é¡¹ */
         if (addop == plus)
         {
-            gen(opr, 0, 2);         /* Éú³É¼Ó·¨Ö¸Áî */
+            gen(opr, 0, 2);         /* ç”ŸæˆåŠ æ³•æŒ‡ä»¤ */
         }
         else
         {
-            gen(opr, 0, 3);         /* Éú³É¼õ·¨Ö¸Áî */
+            gen(opr, 0, 3);         /* ç”Ÿæˆå‡æ³•æŒ‡ä»¤ */
         }
     }
 }
 
 
-/* Ïî´¦Àí */
+/* é¡¹å¤„ç† */
 void term(int* ptx, bool* fsys, int lev)
 {
-    enum symbol mulop;              /* ÓÃÓÚ±£´æ³Ë³ı·¨·ûºÅ */
+    enum symbol mulop;              /* ç”¨äºä¿å­˜ä¹˜é™¤æ³•ç¬¦å· */
     bool nxtlev[symnum];
 
     memcpy(nxtlev, fsys, sizeof(bool) * symnum);
@@ -2480,7 +2479,7 @@ void term(int* ptx, bool* fsys, int lev)
     nxtlev[mod] = true;
     nxtlev[andsym] = true;
     nxtlev[orsym] = true;
-    factor(ptx, nxtlev, lev);       /* ´¦ÀíÒò×Ó */
+    factor(ptx, nxtlev, lev);       /* å¤„ç†å› å­ */
     while(sym == times || sym == slash || sym == mod)
     {
         mulop = sym;
@@ -2488,13 +2487,13 @@ void term(int* ptx, bool* fsys, int lev)
         factor(ptx, nxtlev, lev);
         if(mulop == times)
         {
-            gen(opr, 0, 4);         /* Éú³É³Ë·¨Ö¸Áî */
+            gen(opr, 0, 4);         /* ç”Ÿæˆä¹˜æ³•æŒ‡ä»¤ */
         }
         else if(mulop == slash)
         {
             if(isfloat == false)
             {
-                gen(opr, 0, 5);     /* Éú³É³ı·¨Ö¸Áî */
+                gen(opr, 0, 5);     /* ç”Ÿæˆé™¤æ³•æŒ‡ä»¤ */
             }
             if(isfloat == true)
             {
@@ -2503,7 +2502,7 @@ void term(int* ptx, bool* fsys, int lev)
         }
         else
         {
-            gen(opr, 0, 7);         /* Éú³ÉÈ¡ÓàÖ¸Áî */
+            gen(opr, 0, 7);         /* ç”Ÿæˆå–ä½™æŒ‡ä»¤ */
         }
     }
     while(sym == andsym || sym == orsym )
@@ -2513,42 +2512,42 @@ void term(int* ptx, bool* fsys, int lev)
         factor(ptx, nxtlev, lev);
         if(mulop == andsym)
         {
-            gen(opr, 0, 4);         /* Éú³É³Ë·¨Ö¸Áî */
+            gen(opr, 0, 4);         /* ç”Ÿæˆä¹˜æ³•æŒ‡ä»¤ */
         }
         else if(mulop == orsym)
         {
-            gen(opr, 0, 19);         /* Éú³É»òÖ¸Áî */
+            gen(opr, 0, 19);         /* ç”Ÿæˆæˆ–æŒ‡ä»¤ */
         }
     }
 }
 
 
-/* Òò×Ó´¦Àí */
+/* å› å­å¤„ç† */
 void factor(int* ptx, bool* fsys, int lev)
 {
     int i;
     bool nxtlev[symnum];
-    test(facbegsys, fsys, 24);      /* ¼ì²âÒò×ÓµÄ¿ªÊ¼·ûºÅ */
-    while(inset(sym, facbegsys))    /* Ñ­»·´¦ÀíÒò×Ó */
+    test(facbegsys, fsys, 24);      /* æ£€æµ‹å› å­çš„å¼€å§‹ç¬¦å· */
+    while(inset(sym, facbegsys))    /* å¾ªç¯å¤„ç†å› å­ */
     {
-        if(sym == ident)            /* Òò×ÓÎª±äÁ¿ */
+        if(sym == ident)            /* å› å­ä¸ºå˜é‡ */
         {
-            i = position(id, *ptx); /* ²éÕÒ±êÊ¶·ûÔÚ·ûºÅ±íÖĞµÄÎ»ÖÃ */
+            i = position(id, *ptx); /* æŸ¥æ‰¾æ ‡è¯†ç¬¦åœ¨ç¬¦å·è¡¨ä¸­çš„ä½ç½® */
             if (i == 0)
             {
-                error(4);           /* ±êÊ¶·ûÎ´ÉùÃ÷ */
+                error(4);           /* æ ‡è¯†ç¬¦æœªå£°æ˜ */
             }
             else
             {
                 switch (table[i].kind)
                 {
-                    case constant:  /* ±êÊ¶·ûÎª³£Á¿ */
-                        gen(lit, 0, table[i].val);  /* Ö±½Ó°Ñ³£Á¿µÄÖµÈëÕ» */
+                    case constant:  /* æ ‡è¯†ç¬¦ä¸ºå¸¸é‡ */
+                        gen(lit, 0, table[i].val);  /* ç›´æ¥æŠŠå¸¸é‡çš„å€¼å…¥æ ˆ */
                         getsym();
                         break;
                     case boolean:
                         getsym();
-                        /* ÊÇ·ñÊÇÊı×é */
+                        /* æ˜¯å¦æ˜¯æ•°ç»„ */
                         if(sym == lbrack)
                         {
                             getsym();
@@ -2570,11 +2569,11 @@ void factor(int* ptx, bool* fsys, int lev)
                             else
                                 error(27);
                         }
-                        gen(lod, lev-table[i].level, table[i].adr); /* ÕÒµ½±äÁ¿µØÖ·²¢½«ÆäÖµÈëÕ» */
+                        gen(lod, lev-table[i].level, table[i].adr); /* æ‰¾åˆ°å˜é‡åœ°å€å¹¶å°†å…¶å€¼å…¥æ ˆ */
                         break;
                     case floatnum:
                         getsym();
-                        /* ÊÇ·ñÊÇÊı×é */
+                        /* æ˜¯å¦æ˜¯æ•°ç»„ */
                         if(sym == lbrack)
                         {
                             getsym();
@@ -2596,12 +2595,12 @@ void factor(int* ptx, bool* fsys, int lev)
                             else
                                 error(27);
                         }
-                        gen(lod, lev-table[i].level, table[i].adr); /* ÕÒµ½±äÁ¿µØÖ·²¢½«ÆäÖµÈëÕ» */
+                        gen(lod, lev-table[i].level, table[i].adr); /* æ‰¾åˆ°å˜é‡åœ°å€å¹¶å°†å…¶å€¼å…¥æ ˆ */
                         isfloat = true;
                         break;
-                    case variable:  /* ±êÊ¶·ûÎª±äÁ¿ */
+                    case variable:  /* æ ‡è¯†ç¬¦ä¸ºå˜é‡ */
                         getsym();
-                        /* ÊÇ·ñÊÇÊı×é */
+                        /* æ˜¯å¦æ˜¯æ•°ç»„ */
                         if(sym == lbrack)
                         {
                             getsym();
@@ -2623,7 +2622,7 @@ void factor(int* ptx, bool* fsys, int lev)
                             else
                                 error(27);
                         }
-                        gen(lod, lev-table[i].level, table[i].adr); /* ÕÒµ½±äÁ¿µØÖ·²¢½«ÆäÖµÈëÕ» */
+                        gen(lod, lev-table[i].level, table[i].adr); /* æ‰¾åˆ°å˜é‡åœ°å€å¹¶å°†å…¶å€¼å…¥æ ˆ */
                         if(sym == plusone)
                         {
                             gen(lit, 0, 1);
@@ -2641,8 +2640,8 @@ void factor(int* ptx, bool* fsys, int lev)
                             getsym();
                         }
                         break;
-                    case function:  /* ±êÊ¶·ûÎª¹ı³Ì */
-                        error(16);  /* ²»ÄÜÎª¹ı³Ì */
+                    case function:  /* æ ‡è¯†ç¬¦ä¸ºè¿‡ç¨‹ */
+                        error(16);  /* ä¸èƒ½ä¸ºè¿‡ç¨‹ */
                         getsym();
                         break;
                 }
@@ -2650,11 +2649,11 @@ void factor(int* ptx, bool* fsys, int lev)
         }
         else
         {
-            if(sym == number)       /* Òò×ÓÎªÊı */
+            if(sym == number)       /* å› å­ä¸ºæ•° */
             {
                 if (num > amax)
                 {
-                    error(30);      /* ÊıÔ½½ç */
+                    error(30);      /* æ•°è¶Šç•Œ */
                     num = 0;
                 }
                 gen(lit, 0, num);
@@ -2662,7 +2661,7 @@ void factor(int* ptx, bool* fsys, int lev)
             }
             else
             {
-                if (sym == lparen)  /* Òò×ÓÎª±í´ïÊ½ */
+                if (sym == lparen)  /* å› å­ä¸ºè¡¨è¾¾å¼ */
                 {
                     getsym();
                     memcpy(nxtlev, fsys, sizeof(bool) * symnum);
@@ -2674,7 +2673,7 @@ void factor(int* ptx, bool* fsys, int lev)
                     }
                     else
                     {
-                        error(28);  /* È±ÉÙÓÒÀ¨ºÅ */
+                        error(28);  /* ç¼ºå°‘å³æ‹¬å· */
                     }
                 }
                 else if (sym == tointsym)
@@ -2688,18 +2687,18 @@ void factor(int* ptx, bool* fsys, int lev)
                     {
                         error(10);
                     }
-                    if(sym == ident)            /* Òò×ÓÎª±äÁ¿ */
+                    if(sym == ident)            /* å› å­ä¸ºå˜é‡ */
                     {
-                        i = position(id, *ptx); /* ²éÕÒ±êÊ¶·ûÔÚ·ûºÅ±íÖĞµÄÎ»ÖÃ */
+                        i = position(id, *ptx); /* æŸ¥æ‰¾æ ‡è¯†ç¬¦åœ¨ç¬¦å·è¡¨ä¸­çš„ä½ç½® */
                         if (i == 0)
                         {
-                            error(4);           /* ±êÊ¶·ûÎ´ÉùÃ÷ */
+                            error(4);           /* æ ‡è¯†ç¬¦æœªå£°æ˜ */
                         }
                         else
                         {
                             switch (table[i].kind)
                             {
-                                case constant:  /* ±êÊ¶·ûÎª³£Á¿ */
+                                case constant:  /* æ ‡è¯†ç¬¦ä¸ºå¸¸é‡ */
                                     error(21);
                                     getsym();
                                     break;
@@ -2708,17 +2707,17 @@ void factor(int* ptx, bool* fsys, int lev)
                                     getsym();
                                     break;
                                 case floatnum:
-                                    gen(lod, lev-table[i].level, table[i].adr); /* ÕÒµ½±äÁ¿µØÖ·²¢½«ÆäÖµÈëÕ» */
+                                    gen(lod, lev-table[i].level, table[i].adr); /* æ‰¾åˆ°å˜é‡åœ°å€å¹¶å°†å…¶å€¼å…¥æ ˆ */
                                     gen(opr, 0, 20);//20 is to int
                                     gen(lod, lev-table[i].level, table[i].adr);
                                     table[i].kind = variable;
                                     getsym();
                                     break;
-                                case variable:  /* ±êÊ¶·ûÎª±äÁ¿ */
+                                case variable:  /* æ ‡è¯†ç¬¦ä¸ºå˜é‡ */
                                     error(21);
                                     getsym();
                                     break;
-                                case function:  /* ±êÊ¶·ûÎª¹ı³Ì */
+                                case function:  /* æ ‡è¯†ç¬¦ä¸ºè¿‡ç¨‹ */
                                     error(21);
                                     getsym();
                                     break;
@@ -2745,38 +2744,38 @@ void factor(int* ptx, bool* fsys, int lev)
                     {
                         error(10);
                     }
-                    if(sym == ident)            /* Òò×ÓÎª±äÁ¿ */
+                    if(sym == ident)            /* å› å­ä¸ºå˜é‡ */
                     {
-                        i = position(id, *ptx); /* ²éÕÒ±êÊ¶·ûÔÚ·ûºÅ±íÖĞµÄÎ»ÖÃ */
+                        i = position(id, *ptx); /* æŸ¥æ‰¾æ ‡è¯†ç¬¦åœ¨ç¬¦å·è¡¨ä¸­çš„ä½ç½® */
                         if (i == 0)
                         {
-                            error(4);           /* ±êÊ¶·ûÎ´ÉùÃ÷ */
+                            error(4);           /* æ ‡è¯†ç¬¦æœªå£°æ˜ */
                         }
                         else
                         {
                             switch (table[i].kind)
                             {
-                                case constant:  /* ±êÊ¶·ûÎª³£Á¿ */
+                                case constant:  /* æ ‡è¯†ç¬¦ä¸ºå¸¸é‡ */
                                     error(22);
                                     getsym();
                                     break;
                                 case boolean:
-                                    error(22);  /* ²»ÄÜÎª¹ı³Ì */
+                                    error(22);  /* ä¸èƒ½ä¸ºè¿‡ç¨‹ */
                                     getsym();
                                     break;
                                 case floatnum:
-                                    error(22);  /* ²»ÄÜÎª¹ı³Ì */
+                                    error(22);  /* ä¸èƒ½ä¸ºè¿‡ç¨‹ */
                                     getsym();
                                     break;
-                                case variable:  /* ±êÊ¶·ûÎª±äÁ¿ */
-                                    gen(lod, lev-table[i].level, table[i].adr); /* ÕÒµ½±äÁ¿µØÖ·²¢½«ÆäÖµÈëÕ» */
+                                case variable:  /* æ ‡è¯†ç¬¦ä¸ºå˜é‡ */
+                                    gen(lod, lev-table[i].level, table[i].adr); /* æ‰¾åˆ°å˜é‡åœ°å€å¹¶å°†å…¶å€¼å…¥æ ˆ */
                                     gen(opr, 0, 21);//21 is to float
                                     gen(lod, lev-table[i].level, table[i].adr);
                                     table[i].kind = floatnum;
                                     getsym();
                                     break;
-                                case function:  /* ±êÊ¶·ûÎª¹ı³Ì */
-                                    error(22);  /* ²»ÄÜÎª¹ı³Ì */
+                                case function:  /* æ ‡è¯†ç¬¦ä¸ºè¿‡ç¨‹ */
+                                    error(22);  /* ä¸èƒ½ä¸ºè¿‡ç¨‹ */
                                     getsym();
                                     break;
                             }
@@ -2805,27 +2804,27 @@ void factor(int* ptx, bool* fsys, int lev)
         }
         memset(nxtlev, 0, sizeof(bool) * symnum);
         nxtlev[lparen] = true;
-        test(fsys, nxtlev, 25);     /* Ò»¸öÒò×Ó´¦ÀíÍê±Ï£¬Óöµ½µÄµ¥´ÊÓ¦ÔÚfsys¼¯ºÏÖĞ */
-                                    /* Èç¹û²»ÊÇ£¬±¨´í²¢ÕÒµ½ÏÂÒ»¸öÒò×ÓµÄ¿ªÊ¼£¬Ê¹Óï·¨·ÖÎö¿ÉÒÔ¼ÌĞøÔËĞĞÏÂÈ¥ */
+        test(fsys, nxtlev, 25);     /* ä¸€ä¸ªå› å­å¤„ç†å®Œæ¯•ï¼Œé‡åˆ°çš„å•è¯åº”åœ¨fsysé›†åˆä¸­ */
+                                    /* å¦‚æœä¸æ˜¯ï¼ŒæŠ¥é”™å¹¶æ‰¾åˆ°ä¸‹ä¸€ä¸ªå› å­çš„å¼€å§‹ï¼Œä½¿è¯­æ³•åˆ†æå¯ä»¥ç»§ç»­è¿è¡Œä¸‹å» */
     }
 }
 
 
-/*  Ìõ¼ş´¦Àí */
+/*  æ¡ä»¶å¤„ç† */
 void condition(int* ptx, bool* fsys, int lev)
 {
     enum symbol relop;
     bool nxtlev[symnum];
 
-    if(sym == oddsym)   /* ×¼±¸°´ÕÕoddÔËËã´¦Àí */
+    if(sym == oddsym)   /* å‡†å¤‡æŒ‰ç…§oddè¿ç®—å¤„ç† */
     {
         getsym();
         expression(ptx, fsys, lev);
-        gen(opr, 0, 6); /* Éú³ÉoddÖ¸Áî */
+        gen(opr, 0, 6); /* ç”ŸæˆoddæŒ‡ä»¤ */
     }
     else
     {
-        /* Âß¼­±í´ïÊ½´¦Àí */
+        /* é€»è¾‘è¡¨è¾¾å¼å¤„ç† */
         memcpy(nxtlev, fsys, sizeof(bool) * symnum);
         nxtlev[eql] = true;
         nxtlev[neq] = true;
@@ -2836,7 +2835,7 @@ void condition(int* ptx, bool* fsys, int lev)
         expression(ptx, nxtlev, lev);
         if (sym != eql && sym != neq && sym != lss && sym != leq && sym != gtr && sym != geq)
         {
-            error(9);                  /* Ó¦¸ÃÎª¹ØÏµÔËËã·û */
+            error(9);                  /* åº”è¯¥ä¸ºå…³ç³»è¿ç®—ç¬¦ */
         }
         else
         {
@@ -2870,98 +2869,98 @@ void condition(int* ptx, bool* fsys, int lev)
     }
 }
 
-/* ½âÊÍ³ÌĞò */
+/* è§£é‡Šç¨‹åº */
 void interpret()
 {
-    int p = 0;                      /* Ö¸ÁîÖ¸Õë */
-    int b = 1;                      /* Ö¸Áî»ùÖ· */
-    int t = 0;                      /* Õ»¶¥Ö¸Õë */
-    struct instruction i;           /* ´æ·Åµ±Ç°Ö¸Áî */
-    float fs[stacksize];            /* Ğ¡ÊıÕ» */
+    int p = 0;                      /* æŒ‡ä»¤æŒ‡é’ˆ */
+    int b = 1;                      /* æŒ‡ä»¤åŸºå€ */
+    int t = 0;                      /* æ ˆé¡¶æŒ‡é’ˆ */
+    struct instruction i;           /* å­˜æ”¾å½“å‰æŒ‡ä»¤ */
+    float fs[stacksize];            /* å°æ•°æ ˆ */
 
     printf("Start SW\n");
     fprintf(fresult,"Start SW\n");
-    fs[0] = 0;                       /* s[0]²»ÓÃ */
-    fs[1] = 0;                       /* Ö÷³ÌĞòµÄÈı¸öÁªÏµµ¥Ôª¾ùÖÃÎª0 */
+    fs[0] = 0;                       /* s[0]ä¸ç”¨ */
+    fs[1] = 0;                       /* ä¸»ç¨‹åºçš„ä¸‰ä¸ªè”ç³»å•å…ƒå‡ç½®ä¸º0 */
     fs[2] = 0;
     fs[3] = 0;
     do {
-        i = code[p];                /* ¶Áµ±Ç°Ö¸Áî */
+        i = code[p];                /* è¯»å½“å‰æŒ‡ä»¤ */
         p = p + 1;
         switch (i.f)
         {
-            case lit:               /* ½«³£Á¿aµÄÖµÈ¡µ½Õ»¶¥ */
+            case lit:               /* å°†å¸¸é‡açš„å€¼å–åˆ°æ ˆé¡¶ */
                 t = t + 1;
                 fs[t] = i.a;
                 break;
-            case opr:               /* ÊıÑ§¡¢Âß¼­ÔËËã */
+            case opr:               /* æ•°å­¦ã€é€»è¾‘è¿ç®— */
                 switch ((int)i.a)
                 {
-                    case 0:         /* º¯Êıµ÷ÓÃ½áÊøºó·µ»Ø */
+                    case 0:         /* å‡½æ•°è°ƒç”¨ç»“æŸåè¿”å› */
                         t = b - 1;
                         p = (int)fs[t + 3];
                         b = (int)fs[t + 2];
                         break;
-                    case 1:         /* Õ»¶¥ÔªËØÈ¡·´ */
+                    case 1:         /* æ ˆé¡¶å…ƒç´ å–å */
                         fs[t] = - fs[t];
                         break;
-                    case 2:         /* ´ÎÕ»¶¥Ïî¼ÓÉÏÕ»¶¥Ïî£¬ÍËÁ½¸öÕ»ÔªËØ£¬Ïà¼ÓÖµ½øÕ» */
+                    case 2:         /* æ¬¡æ ˆé¡¶é¡¹åŠ ä¸Šæ ˆé¡¶é¡¹ï¼Œé€€ä¸¤ä¸ªæ ˆå…ƒç´ ï¼Œç›¸åŠ å€¼è¿›æ ˆ */
                         t = t - 1;
                         fs[t] = fs[t] + fs[t + 1];
                         break;
-                    case 3:         /* ´ÎÕ»¶¥Ïî¼õÈ¥Õ»¶¥Ïî */
+                    case 3:         /* æ¬¡æ ˆé¡¶é¡¹å‡å»æ ˆé¡¶é¡¹ */
                         t = t - 1;
                         fs[t] = fs[t] - fs[t + 1];
                         break;
-                    case 4:         /* ´ÎÕ»¶¥Ïî³ËÒÔÕ»¶¥Ïî */
+                    case 4:         /* æ¬¡æ ˆé¡¶é¡¹ä¹˜ä»¥æ ˆé¡¶é¡¹ */
                         t = t - 1;
                         fs[t] = fs[t] * fs[t + 1];
                         break;
-                    case 5:         /* ´ÎÕ»¶¥Ïî³ıÒÔÕ»¶¥Ïî */
+                    case 5:         /* æ¬¡æ ˆé¡¶é¡¹é™¤ä»¥æ ˆé¡¶é¡¹ */
                         t = t - 1;
                         fs[t] = (int)fs[t] / (int)fs[t + 1];
                         break;
-                    case 6:         /* Õ»¶¥ÔªËØµÄÆæÅ¼ÅĞ¶Ï */
+                    case 6:         /* æ ˆé¡¶å…ƒç´ çš„å¥‡å¶åˆ¤æ–­ */
                         fs[t] = (int)fs[t] % 2;
                         break;
-                    case 7:         /* ´ÎÕ»¶¥ÏîÈ¡ÓàÕ»¶¥Ïî */
+                    case 7:         /* æ¬¡æ ˆé¡¶é¡¹å–ä½™æ ˆé¡¶é¡¹ */
                         t = t - 1;
                         fs[t] = (int)fs[t] % (int)fs[t + 1];
                         break;
-                    case 8:         /* ´ÎÕ»¶¥ÏîÓëÕ»¶¥ÏîÊÇ·ñÏàµÈ */
+                    case 8:         /* æ¬¡æ ˆé¡¶é¡¹ä¸æ ˆé¡¶é¡¹æ˜¯å¦ç›¸ç­‰ */
                         t = t - 1;
                         fs[t] = (fs[t] == fs[t + 1]);
                         break;
-                    case 9:         /* ´ÎÕ»¶¥ÏîÓëÕ»¶¥ÏîÊÇ·ñ²»µÈ */
+                    case 9:         /* æ¬¡æ ˆé¡¶é¡¹ä¸æ ˆé¡¶é¡¹æ˜¯å¦ä¸ç­‰ */
                         t = t - 1;
                         fs[t] = (fs[t] != fs[t + 1]);
                         break;
-                    case 10:        /* ´ÎÕ»¶¥ÏîÊÇ·ñĞ¡ÓÚÕ»¶¥Ïî */
+                    case 10:        /* æ¬¡æ ˆé¡¶é¡¹æ˜¯å¦å°äºæ ˆé¡¶é¡¹ */
                         t = t - 1;
                         fs[t] = (fs[t] < fs[t + 1]);
                         break;
-                    case 11:        /* ´ÎÕ»¶¥ÏîÊÇ·ñ´óÓÚµÈÓÚÕ»¶¥Ïî */
+                    case 11:        /* æ¬¡æ ˆé¡¶é¡¹æ˜¯å¦å¤§äºç­‰äºæ ˆé¡¶é¡¹ */
                         t = t - 1;
                         fs[t] = (fs[t] >= fs[t + 1]);
                         break;
-                    case 12:        /* ´ÎÕ»¶¥ÏîÊÇ·ñ´óÓÚÕ»¶¥Ïî */
+                    case 12:        /* æ¬¡æ ˆé¡¶é¡¹æ˜¯å¦å¤§äºæ ˆé¡¶é¡¹ */
                         t = t - 1;
                         fs[t] = (fs[t] > fs[t + 1]);
                         break;
-                    case 13:        /* ´ÎÕ»¶¥ÏîÊÇ·ñĞ¡ÓÚµÈÓÚÕ»¶¥Ïî */
+                    case 13:        /* æ¬¡æ ˆé¡¶é¡¹æ˜¯å¦å°äºç­‰äºæ ˆé¡¶é¡¹ */
                         t = t - 1;
                         fs[t] = (fs[t] <= fs[t + 1]);
                         break;
-                    case 14:        /* Õ»¶¥ÖµÊä³ö */
+                    case 14:        /* æ ˆé¡¶å€¼è¾“å‡º */
                         printf("%d", (int)fs[t]);
                         fprintf(fresult, "%d", (int)fs[t]);
                         t = t - 1;
                         break;
-                    case 15:        /* Êä³ö»»ĞĞ·û */
+                    case 15:        /* è¾“å‡ºæ¢è¡Œç¬¦ */
                         printf("\n");
                         fprintf(fresult,"\n");
                         break;
-                    case 16:        /* ¶ÁÈëÒ»¸öÊäÈëÖÃÓÚÕ»¶¥ */
+                    case 16:        /* è¯»å…¥ä¸€ä¸ªè¾“å…¥ç½®äºæ ˆé¡¶ */
                         t = t + 1;
                         printf("?");
                         fprintf(fresult, "?");
@@ -2973,7 +2972,7 @@ void interpret()
                     case 17:
                         t = t - 1;
                         break;
-                    case 18:        /* ´ÎÕ»¶¥ÏîÓëÕ»¶¥ÏîÊÇ·ñÏàµÈ */
+                    case 18:        /* æ¬¡æ ˆé¡¶é¡¹ä¸æ ˆé¡¶é¡¹æ˜¯å¦ç›¸ç­‰ */
                         fs[t] = (fs[t] == fs[t - 1]);
                         break;
                     case 19:
@@ -2989,12 +2988,12 @@ void interpret()
                     case 21:
                         fs[t] = (float)fs[t];
                         break;
-                    case 22:        /* Õ»¶¥ÖµÊä³ö */
+                    case 22:        /* æ ˆé¡¶å€¼è¾“å‡º */
                         printf("%f", fs[t]);
                         fprintf(fresult, "%f", fs[t]);
                         t = t - 1;
                         break;
-                    case 23:        /* Õ»¶¥ÖµÊä³ö */
+                    case 23:        /* æ ˆé¡¶å€¼è¾“å‡º */
                         if(fs[t] == 1)
                         {
                             printf("true");
@@ -3011,14 +3010,14 @@ void interpret()
                         }
                         t = t - 1;
                         break;
-                    case 24:        /* ¶ÁÈëÒ»¸öÊäÈëÖÃÓÚÕ»¶¥ */
+                    case 24:        /* è¯»å…¥ä¸€ä¸ªè¾“å…¥ç½®äºæ ˆé¡¶ */
                         t = t + 1;
                         printf("?");
                         fprintf(fresult, "?");
                         scanf("%f", &fs[t]);
                         fprintf(fresult, "%f\n", fs[t]);
                         break;
-                    case 25:        /* ¶ÁÈëÒ»¸öÊäÈëÖÃÓÚÕ»¶¥ */
+                    case 25:        /* è¯»å…¥ä¸€ä¸ªè¾“å…¥ç½®äºæ ˆé¡¶ */
                         t = t + 1;
                         printf("?");
                         fprintf(fresult, "?");
@@ -3045,7 +3044,7 @@ void interpret()
                             fs[t] = 0;
                         }
                         break;
-                    case 27:         /* ´ÎÕ»¶¥Ïî³ıÒÔÕ»¶¥Ïî */
+                    case 27:         /* æ¬¡æ ˆé¡¶é¡¹é™¤ä»¥æ ˆé¡¶é¡¹ */
                         t = t - 1;
                         fs[t] = fs[t] / fs[t + 1];
                         break;
@@ -3078,28 +3077,28 @@ void interpret()
                         break;
                 }
                 break;
-            case lod:               /* È¡Ïà¶Ôµ±Ç°¹ı³ÌµÄÊı¾İ»ùµØÖ·ÎªaµÄÄÚ´æµÄÖµµ½Õ»¶¥ */
+            case lod:               /* å–ç›¸å¯¹å½“å‰è¿‡ç¨‹çš„æ•°æ®åŸºåœ°å€ä¸ºaçš„å†…å­˜çš„å€¼åˆ°æ ˆé¡¶ */
                 t = t + 1;
                 fs[t] = fs[base(i.l, fs, b) + (int)i.a];
                 break;
-            case sto:               /* Õ»¶¥µÄÖµ´æµ½Ïà¶Ôµ±Ç°¹ı³ÌµÄÊı¾İ»ùµØÖ·ÎªaµÄÄÚ´æ */
+            case sto:               /* æ ˆé¡¶çš„å€¼å­˜åˆ°ç›¸å¯¹å½“å‰è¿‡ç¨‹çš„æ•°æ®åŸºåœ°å€ä¸ºaçš„å†…å­˜ */
                 fs[base(i.l, fs, b) + (int)i.a] = fs[t];
                 t = t - 1;
                 break;
-            case cal:               /* µ÷ÓÃ×Ó¹ı³Ì */
-                fs[t + 1] = base(i.l, fs, b); /* ½«¸¸¹ı³Ì»ùµØÖ·ÈëÕ»£¬¼´½¨Á¢¾²Ì¬Á´ */
-                fs[t + 2] = b;       /* ½«±¾¹ı³Ì»ùµØÖ·ÈëÕ»£¬¼´½¨Á¢¶¯Ì¬Á´ */
-                fs[t + 3] = p;       /* ½«µ±Ç°Ö¸ÁîÖ¸ÕëÈëÕ»£¬¼´±£´æ·µ»ØµØÖ· */
-                b = t + 1;          /* ¸Ä±ä»ùµØÖ·Ö¸ÕëÖµÎªĞÂ¹ı³ÌµÄ»ùµØÖ· */
-                p = (int)i.a;            /* Ìø×ª */
+            case cal:               /* è°ƒç”¨å­è¿‡ç¨‹ */
+                fs[t + 1] = base(i.l, fs, b); /* å°†çˆ¶è¿‡ç¨‹åŸºåœ°å€å…¥æ ˆï¼Œå³å»ºç«‹é™æ€é“¾ */
+                fs[t + 2] = b;       /* å°†æœ¬è¿‡ç¨‹åŸºåœ°å€å…¥æ ˆï¼Œå³å»ºç«‹åŠ¨æ€é“¾ */
+                fs[t + 3] = p;       /* å°†å½“å‰æŒ‡ä»¤æŒ‡é’ˆå…¥æ ˆï¼Œå³ä¿å­˜è¿”å›åœ°å€ */
+                b = t + 1;          /* æ”¹å˜åŸºåœ°å€æŒ‡é’ˆå€¼ä¸ºæ–°è¿‡ç¨‹çš„åŸºåœ°å€ */
+                p = (int)i.a;            /* è·³è½¬ */
                 break;
-            case ini:               /* ÔÚÊı¾İÕ»ÖĞÎª±»µ÷ÓÃµÄ¹ı³Ì¿ª±Ùa¸öµ¥ÔªµÄÊı¾İÇø */
+            case ini:               /* åœ¨æ•°æ®æ ˆä¸­ä¸ºè¢«è°ƒç”¨çš„è¿‡ç¨‹å¼€è¾Ÿaä¸ªå•å…ƒçš„æ•°æ®åŒº */
                 t = t + (int)i.a;
                 break;
-            case jmp:               /* Ö±½ÓÌø×ª */
+            case jmp:               /* ç›´æ¥è·³è½¬ */
                 p = (int)i.a;
                 break;
-            case jpc:               /* Ìõ¼şÌø×ª */
+            case jpc:               /* æ¡ä»¶è·³è½¬ */
                 if (fs[t] == 0)
                     p = (int)i.a;
                 t = t - 1;
@@ -3110,7 +3109,7 @@ void interpret()
     fprintf(fresult,"End sw\n");
 }
 
-/* Í¨¹ı¹ı³Ì»ùÖ·ÇóÉÏl²ã¹ı³ÌµÄ»ùÖ· */
+/* é€šè¿‡è¿‡ç¨‹åŸºå€æ±‚ä¸Šlå±‚è¿‡ç¨‹çš„åŸºå€ */
 int base(int l, float* s, int b)
 {
     int b1;
