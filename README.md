@@ -7,9 +7,9 @@
 ### 2.1 编译器
 #### 2.1.1 Sw语言（含扩展）定义及其语法图
 
-（语法定义中红色部分为扩展部分）
+（语法定义中加粗部分为扩展部分）
 program = declaration_list statement_list.
-<center>![program语法图](graph/program.GIF)</center>
+<center>  ![program语法图](graph/program.GIF)  </center>
 图1 program语法图
 
 declaration_list = var_declaration_list function_declaration_list.
