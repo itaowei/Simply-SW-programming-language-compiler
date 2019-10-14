@@ -9,7 +9,7 @@
 
 （语法定义中红色部分为扩展部分）
 program = declaration_list statement_list.
-![program语法图](graph/program.GIF)
+<center>![program语法图](graph/program.GIF)</center>
 图1 program语法图
 
 declaration_list = var_declaration_list function_declaration_list.
