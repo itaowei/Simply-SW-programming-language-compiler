@@ -24,76 +24,91 @@ declaration_list = var_declaration_list function_declaration_list.
 图2 declaration_list语法图
 
 var_declaration_list = { var_declaration ";" }.
- ![var_declaration_list语法图](graph/var_declaration_list.GIF)
+
+![var_declaration_list语法图](graph/var_declaration_list.GIF)
 
 图3 var_declaration_list语法图
 
 var_declaration = ("var" ident [ "[" number "]" ] ) | ("bool" ident [ "[" number "]" ] ) | ("const" ident "=" expression) | ("float" ident [ "[" number "]" ] ) .
- ![var_declaration语法图](graph/var_declaration.GIF)
+ 
+![var_declaration语法图](graph/var_declaration.GIF)
 
 图4 var_declaration语法图
 
 function_declaration_list = { "func" ident "(" [ ( ("var" ident) | ("bool" ident) | ("float" ident) ) { "," ( ("var" ident) | ("bool" ident) |  ("float" ident) ) } ] ")" "{" function_body "}" }.
-![function_list语法图](graph/function_list.GIF)
+
+![function_declaration_list语法图](graph/function_declaration_list.GIF)
 
 图5 function_declaration_list语法图
 
 function_body = var_declaration_list statement_list [ "return" expression ";" ].
+
 ![function_body语法图](graph/function_body.GIF)
 
 图6 function_body语法图
 
 statement_list = {statement ";"}.
+
 ![statement_list语法图](graph/statement_list.GIF)
 
 图7 statement_list语法图
 
 statement = if_stat | while_stat | read_stat | print_stat | assign_stat | for_stat | call_stat | switch_stat | repeat_stat | ident_plus | "exit" | "continue" | "break" .
+
 ![statement语法图](graph/statement.GIF)
 
 图8 statement语法图
 
 if_stat = "if" condition "{" statement_list "}" ["else" "{" statement_list "}"].
+
 ![if_stat语法图](graph/if_stat.GIF)
 
 图9 if_stat语法图
 
 while_stat = "while" condition "{" [ statement_list ] "}".
+
 ![while_stat语法图](graph/while_stat.GIF)
 
 图10 while_stat语法图
 
 read_stat = "read" "(" ident ")".
+
 ![read_stat语法图](graph/read_stat.GIF)
 
 图11 read_stat语法图
 
 print_stat = "print" "(" ident [ "[" number "]" ] ")".
+
 ![print_stat语法图](graph/print_stat.GIF)
 
 图12 print_stat语法图
 
 assign_stat = ident [ "[" number "]" ] (( "=" (expression | call_stat ) ) | ( ( "++" | "--") )).
+
 ![assign_stat语法图](graph/assign_stat.GIF)
 
 图13 assign_stat语法图
 
 for_stat = "for" ident "in" (ident|number) "..." (ident|number) "{" statement_list "}".
+
 ![for_stat语法图](graph/for_stat.GIF)
 
 图14 for_stat语法图
 
 call_stat = "call" ident "(" [ expression { "," expression } ] ")".
+
 ![call_stat语法图](graph/call_stat.GIF)
 
 图15 call_stat语法图
 
 condition = expression ("=="|"!="|"<"|"<="|">"|">=") expression | "odd" expression.
+
 ![condition_stat语法图](graph/condition_stat.GIF)
 
 图16 condition_stat语法图
 
 expression = ["+"|"-"|"not"] term { ("+"|"-") term}.
+
 ![expression语法图](graph/expression.GIF)
 
 图17 expression语法图
@@ -101,27 +116,31 @@ expression = ["+"|"-"|"not"] term { ("+"|"-") term}.
 term = factor { ("\*"|"/"|"%"|"and"|"or") factor}.
 ![term语法图](graph/term.GIF)
 
-图18 term语法图
+ 图18 term语法图
 
 factor =( ident [ "[" number "]" ] [ "++" | "--"] ) | ( ("toint" | "tofloat") "(" ident ")" ) | "true" | "false" | number | "(" expression ")".
+
 ![factor语法图](graph/factor.GIF)
 
 图19 factor语法图
 
 switch_stat = "switch" expression "{" {"case" number ":" statement_list "break" ";" } "default" ":" statement_list "break" ";" "}".
+
 ![switch_stat语法图](graph/switch_stat.GIF)
 
 图20 switch_stat语法图
 
 repeat_stat = "repeat" "{" [statement_list ] "}" "while" condition.
+
 ![repeat_stat语法图](graph/repeat_stat.GIF)
 
 图21 repeat_stat语法图
 
 ident_plus =  ( "toint" | "tofloat") "(" ident ")" .
+
 ![ident_plus语法图](graph/ident_plus.GIF)
 
-图22 ident_plus语法图
+ 图22 ident_plus语法图
 
 #### 2.1.2 判断是否符合两条限制规则
 两条限制规则（引用自教材）为：
