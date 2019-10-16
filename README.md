@@ -103,9 +103,9 @@ call_stat = "call" ident "(" [ expression { "," expression } ] ")".
 
 condition = expression ("=="|"!="|"<"|"<="|">"|">=") expression | "odd" expression.
 
-![condition_stat语法图](graph/condition_stat.GIF)
+![condition语法图](graph/condition.GIF)
 
-图16 condition_stat语法图
+图16 condition语法图
 
 expression = ["+"|"-"|"not"] term { ("+"|"-") term}.
 
@@ -114,6 +114,7 @@ expression = ["+"|"-"|"not"] term { ("+"|"-") term}.
 图17 expression语法图
 
 term = factor { ("\*"|"/"|"%"|"and"|"or") factor}.
+
 ![term语法图](graph/term.GIF)
 
  图18 term语法图
@@ -140,7 +141,7 @@ ident_plus =  ( "toint" | "tofloat") "(" ident ")" .
 
 ![ident_plus语法图](graph/ident_plus.GIF)
 
- 图22 ident_plus语法图
+<center> 图22 ident_plus语法图 </center> 
 
 #### 2.1.2 判断是否符合两条限制规则
 两条限制规则（引用自教材）为：
