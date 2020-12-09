@@ -155,8 +155,12 @@ ident_plus =  ( "toint" | "tofloat") "(" ident ")" .
 #### 2.1.3 过程调用相关图
 参照教材图8-1程序过程调用相关图，做出所示下图。
 
+![语法分析调用](graph/23.png)
+ 
 图23  Sw语言过程语法分析调用相关图
 
+![所有函数调用](graph/24.png)
+ 
 图24  Sw语言过程所有函数调用相关图
 #### 2.1.4 程序总体结构
 ``` c
@@ -190,11 +194,247 @@ int base(int l, float* s, int b);
 ``` 
 #### 2.1.5 语法出错表定义
 表1  出错编号对应语法错误信息
+<table class="table table-bordered table-striped table-condensed">
+   <tr>
+      <td>出错编号</td>
+      <td>出错信息</td>
+   </tr>
+   <tr>
+      <td>1</td>
+      <td>把"="写成了"=="</td>
+   </tr>
+   <tr>
+      <td>2</td>
+      <td>常量声明中的=后应是数字</td>
+   </tr>
+   <tr>
+      <td>3</td>
+      <td>常量声明中的标识符后应是=</td>
+   </tr>
+   <tr>
+      <td>4</td>
+      <td>该标识符尚未声明/无法找到</td>
+   </tr>
+   <tr>
+      <td>5</td>
+      <td>漏掉了分号</td>
+   </tr>
+   <tr>
+      <td>6</td>
+      <td>单个function定义之后后继符号检查有误</td>
+   </tr>
+   <tr>
+      <td>7</td>
+      <td>所有function定义之后后继符号检查有误</td>
+   </tr>
+   <tr>
+      <td>8</td>
+      <td>（分程序）后继符号有误</td>
+   </tr>
+   <tr>
+      <td>9</td>
+      <td>应该是关系运算符</td>
+   </tr>
+   <tr>
+      <td>10</td>
+      <td>toint/tofloat后面缺少"("</td>
+   </tr>
+   <tr>
+      <td>11</td>
+      <td>toint/tofloat后面缺少")"</td>
+   </tr>
+   <tr>
+      <td>12</td>
+      <td>只能给变量赋值</td>
+   </tr>
+   <tr>
+      <td>13</td>
+      <td>尚未检测到赋值符号</td>
+   </tr>
+   <tr>
+      <td>14</td>
+      <td>call后应为标识符</td>
+   </tr>
+   <tr>
+      <td>15</td>
+      <td>标识符类型应为函数</td>
+   </tr>
+   <tr>
+      <td>16</td>
+      <td>标识符类型不能为函数</td>
+   </tr>
+   <tr>
+      <td>17</td>
+      <td>函数名后面少了"("</td>
+   </tr>
+   <tr>
+      <td>18</td>
+      <td>函数名后面少了")"</td>
+   </tr>
+   <tr>
+      <td>19</td>
+      <td>函数名后面少了"{"</td>
+   </tr>
+   <tr>
+      <td>20</td>
+      <td>函数名后面少了"}"</td>
+   </tr>
+   <tr>
+      <td>21</td>
+      <td>标识符类型应为实数</td>
+   </tr>
+   <tr>
+      <td>22</td>
+      <td>标识符类型应为整数</td>
+   </tr>
+   <tr>
+      <td>23</td>
+      <td>上面部分break语句不能跳出</td>
+   </tr>
+   <tr>
+      <td>24</td>
+      <td>因子开始符号有问题</td>
+   </tr>
+   <tr>
+      <td>25</td>
+      <td>因子结束的下一符号有问题</td>
+   </tr>
+   <tr>
+      <td>26</td>
+      <td>"["后不是数字</td>
+   </tr>
+   <tr>
+      <td>27</td>
+      <td>"["缺少与之匹配的"]"</td>
+   </tr>
+   <tr>
+      <td>28</td>
+      <td>"("缺少与之匹配的")"</td>
+   </tr>
+   <tr>
+      <td>29</td>
+      <td>块注释缺少结束标志"*/"</td>
+   </tr>
+   <tr>
+      <td>30</td>
+      <td>数字位数过多（超过nmax位了）</td>
+   </tr>
+   <tr>
+      <td>31</td>
+      <td>bool类型数据遭到损坏</td>
+   </tr>
+   <tr>
+      <td>32</td>
+      <td>函数体内不能再定义函数</td>
+   </tr>
+   <tr>
+      <td>33</td>
+      <td>read/call/print后面缺少")"</td>
+   </tr>
+   <tr>
+      <td>34</td>
+      <td>read/call/print后面缺少"("</td>
+   </tr>
+   <tr>
+      <td>35</td>
+      <td>switch/case语句缺少"}"</td>
+   </tr>
+   <tr>
+      <td>36</td>
+      <td>case后面只能接数字</td>
+   </tr>
+   <tr>
+      <td>37</td>
+      <td>case/default语句快中缺少":"</td>
+   </tr>
+   <tr>
+      <td>38</td>
+      <td>case/default语句快中缺少"break"</td>
+   </tr>
+   <tr>
+      <td>39</td>
+      <td>缺少default语句块</td>
+   </tr>
+   <tr>
+      <td>40</td>
+      <td>case/default语句快中缺少";"</td>
+   </tr>
+   <tr>
+      <td>41</td>
+      <td>func后面不是标识符</td>
+   </tr>
+   <tr>
+      <td>42</td>
+      <td>var后面不是标识符</td>
+   </tr>
+   <tr>
+      <td>43</td>
+      <td>函数括号内数据类型后面不是标识符</td>
+   </tr>
+   <tr>
+      <td>44</td>
+      <td>函数定义括号末尾多了个逗号</td>
+   </tr>
+   <tr>
+      <td>45</td>
+      <td>调用函数参数个数不对</td>
+   </tr>
+   <tr>
+      <td>46</td>
+      <td>"in"后所接数字/变量有问题 </td>
+   </tr>
+   <tr>
+      <td>47</td>
+      <td>"..."后所接数字/变量有问题 </td>
+   </tr>
+   <tr>
+      <td>48</td>
+      <td>for循环缺少"..."</td>
+   </tr>
+   <tr>
+      <td>49</td>
+      <td>for循环缺少"in"</td>
+   </tr>
+   <tr>
+      <td>50</td>
+      <td>for循环缺少"{"</td>
+   </tr>
+   <tr>
+      <td>51</td>
+      <td>for循环缺少"}"</td>
+   </tr>
+   <tr>
+      <td>52</td>
+      <td>if条件句后面少了"{"</td>
+   </tr>
+   <tr>
+      <td>53</td>
+      <td>if执行语句后面少了"}"</td>
+   </tr>
+   <tr>
+      <td>54</td>
+      <td>else执行语句后面少了"{"</td>
+   </tr>
+   <tr>
+      <td>55</td>
+      <td>else执行语句后面少了"}"</td>
+   </tr>
+   <tr>
+      <td>56</td>
+      <td>while/repeat条件句后面少了"{"</td>
+   </tr>
+   <tr>
+      <td>57</td>
+      <td>while/repeat执行语句后面少了"}"</td>
+   </tr>
+</table>
 
 ### 2.2 虚拟机
 #### 2.2.1 虚拟机组织结构
 它仅由2个存储器、1个指令寄存器和3个地址寄存器组成。程序存储器code用来存放通过编译产生的中间代码程序（目标程序），它在程序解释执行过程中保持不变。数据存储器s被当成数据栈（sack）使用。所有的算术和关系操作符都从栈顶找到它的操作数，又以计算结果取而代之。栈顶数据单元的地址用地址寄存器t（top）标记。数据存储器s只有在代码程序被解释执行时才开始使用。指令寄存器i含有正在解释的指令。程序地址寄存器p含有下一条要从程序存储器取得的、被解释执行指令的地址。
 如下图所示：
+
+![虚拟机组织结构](graph/25.png)
  
 图 25 虚拟机组织结构图
 #### 2.2.2 虚拟机指令格式
@@ -223,6 +463,8 @@ enum fct {
 ```
 ## 3 模块架构
 如下图所示：
+
+![模块架构](graph/26.png)
  
 图 26 模块架构图
 
